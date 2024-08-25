@@ -584,6 +584,7 @@ The overflow property controls what happens to content that is too large for its
 ```
 ## FlexBox
 Flexbox is a layout model that allows you to design complex layouts with ease by distributing space along a container's main and cross axes.
+![alt text](Img/css_flexbox.png)
 
 
 ### display: flex;
