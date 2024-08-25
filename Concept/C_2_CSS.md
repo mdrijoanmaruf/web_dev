@@ -1,13 +1,13 @@
 # CSS
 
-### Adding CSS :
+## Adding CSS :
 Adding CSS in HTML file for style the HTML code.
-#### Inline CSS :
+### Inline CSS :
 It is added directly within HTML tag using the **style** attribute.
 ```html
 <p style="color: blue; font-size: 16px;">This is an inline CSS example.</p>
 ```
-#### Internal CSS :
+### Internal CSS :
 
 ```html
 <head>
@@ -25,7 +25,7 @@ It is added directly within HTML tag using the **style** attribute.
 
 
 
-#### External CSS :
+### External CSS :
 
 ```html
 <head>
@@ -38,7 +38,7 @@ It is added directly within HTML tag using the **style** attribute.
 
 
 
-#### !important Keyword :
+### !important Keyword :
 The !important keyword is used to give higher priority to a specific CSS rule, overriding other declarations.
 ```css
 p {
@@ -51,7 +51,7 @@ p {
 }
 ```
 
-#### CSS Comment :
+### CSS Comment :
 
 ```css
 /* This is a CSS comment */
@@ -60,9 +60,9 @@ p {
 }
 ```
 
-### CSS Selector :
+## CSS Selector :
 Targeting HTML contant.
-#### Element Selector :
+### Element Selector :
 Targets all instances of a specific HTML element.
 ```css
 p {
@@ -71,7 +71,7 @@ p {
 ```
 
 
-#### ID Selector :
+### ID Selector :
 Targets a specific element with a unique id attribute. The # symbol is used before the id name.
 ```css
 #header {
@@ -80,7 +80,7 @@ Targets a specific element with a unique id attribute. The # symbol is used befo
 ```
 
 
-#### Class Selector :
+### Class Selector :
 Targets elements with a specific class attribute. The . symbol is used before the class name.
 ```css
 .highlight {
@@ -89,7 +89,7 @@ Targets elements with a specific class attribute. The . symbol is used before th
 ```
 
 
-#### Group Selector :
+### Group Selector :
 Applies the same style to multiple selectors. Selectors are separated by commas.
 ```css
 h1, h2, p {
@@ -99,7 +99,7 @@ h1, h2, p {
 ```
 
 
-#### Universla Selector :
+### Universla Selector :
 Targets all elements on the page. The * symbol is used as the universal selector.
 ```css
 * {
@@ -109,8 +109,8 @@ Targets all elements on the page. The * symbol is used as the universal selector
 ```
 
 
-### Font :
-#### Font Style :
+## Font :
+### Font Style :
 Specifies the style of the font, such as normal, italic, or oblique.
 
 ```css
@@ -120,7 +120,7 @@ p {
 ```
 
 
-#### Font Size :
+### Font Size :
 Defines the size of the font. It can be set in various units like pixels (px), em, rem, percentages (%), etc.
 ```css
 p {
@@ -129,7 +129,7 @@ p {
 ```
 
 
-#### Font Weidth :
+### Font Weidth :
 Controls the thickness (or boldness) of the font. Common values are normal, bold, bolder, lighter, or numeric values (100 to 900).
 ```css
 p {
@@ -138,7 +138,7 @@ p {
 ```
 
 
-#### Font Family :
+### Font Family :
 Specifies the typeface or a list of typefaces for the text. You can provide multiple font names as a fallback list.
 ```css
 p {
@@ -147,7 +147,7 @@ p {
 ```
 
 
-#### Font Varient :
+### Font Varient :
 Controls the use of small-caps or other font variations.
 ```css
 p {
@@ -156,7 +156,7 @@ p {
 ```
 
 
-#### External/Google Font :
+### External/Google Font :
 ```html
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -169,15 +169,15 @@ body {
 }
 ```
 
-### Colors :
-#### Hexadecimal :
+## Colors :
+### Hexadecimal :
 ```css
 p {
   color: #FF5733;
 }
 ```
 
-#### RGB : 
+### RGB : 
 
 ```css
 p {
@@ -185,7 +185,7 @@ p {
 }
 ```
 
-#### RGBA :
+### RGBA :
 Similar to RGB but with an additional alpha (opacity) value, ranging from 0 (completely transparent) to 1 (completely opaque).
 ```css
 p {
@@ -194,7 +194,7 @@ p {
 ```
 
 
-#### HSL (Hue, Saturation, Lightness)
+### HSL (Hue, Saturation, Lightness)
 * **Hue:** A degree on the color wheel (0-360), where 0 is red, 120 is green, and 240 is blue.
 * **Saturation:** A percentage value (0% is a shade of gray, 100% is the full color).
 * **Lightness:** A percentage value (0% is black, 50% is normal, 100% is white).
@@ -206,7 +206,7 @@ p {
 ```
 
 
-#### Backgroung Color :
+### Backgroung Color :
 
 ```css
 div {
@@ -215,7 +215,7 @@ div {
 ```
 
 
-#### Text Color :
+### Text Color :
 
 ```css
 p {
@@ -224,8 +224,8 @@ p {
 ```
 
 
-### Border :
-#### Border Style :
+## Border :
+### Border Style :
 Defines the style of the border. Common values include **none**, **solid**, **dashed**, **dotted**, **double, groove**, **ridge**, **inset**, and **outset**.
 ```css
 div {
@@ -233,7 +233,7 @@ div {
 }
 ```
 
-#### Border Width :
+### Border Width :
 Can be specified in **pixels (px)**, **ems (em)**, or other length units. Also supports keywords like **thin**, **medium**, and **thick**.
 ```css
 div {
@@ -241,14 +241,14 @@ div {
 }
 ```
 
-#### Border Color :
+### Border Color :
 ```css
 div {
   border-color: #FF5733; /* HEX */
 }
 ```
 
-#### Border :
+### Border :
 A shorthand property that sets the **border-width**, **border-style**, and **border-color** in one declaration.
 
 ```css
@@ -257,7 +257,7 @@ div {
 }
 ```
 
-#### Border Redious :
+### Border Redious :
 Rounds the corners of the border. Can be set for all corners, or individually for each corner.
 ```css
 div {
@@ -266,7 +266,7 @@ div {
 }
 ```
 
-#### Heigth :
+### Heigth :
 Defines the height of an element. Can be set using various units such as **pixels (px)**, **percentages (%)**, **ems (em)** or **viewport units (vh).**
 ```css
 div {
@@ -275,7 +275,7 @@ div {
 ```
 
 
-#### Weidth :
+### Weidth :
 Same as heigth.
 ```css
 div {
@@ -284,11 +284,11 @@ div {
 ```
 
 
-### Box :
-#### Box Mode :
+## Box :
+### Box Mode :
 ![alt text](Img/css_box.png)
 
-#### Padding :
+### Padding :
 * **Definition** :Space between the content of an element and its border. It is inside the element’s border.
 * **Properties**: Can be set for all sides or individually for each side (top, right, bottom, left).
 
@@ -321,7 +321,7 @@ div {
 ```
 
 
-#### Margin :
+### Margin :
 * **Definition**: Space outside the border of an element. It creates distance between the element’s border and surrounding elements.
 
 * **Properties**: Can be set for all sides or individually for each side (top, right, bottom, left).
@@ -355,8 +355,8 @@ div {
 ```
 
 
-### Display Property :
-#### Display Block (display: block)
+## Display Property :
+### Display Block (display: block)
 **Definition**: Makes an element a block-level element.
 **Behavior**:
 * Takes up the full width available, causing a line break before and after the element.
@@ -365,7 +365,7 @@ div {
 Examples of Block Elements: **div, h1, p, header.**
 
 
-#### Display Inline (display: inline)
+### Display Inline (display: inline)
 **Definition**: Makes an element an inline element.
 **Behavior**:
 * Takes up only as much width as necessary, without forcing a line break.
@@ -374,7 +374,7 @@ Examples of Block Elements: **div, h1, p, header.**
 Examples of Inline Elements: **span, a , strong , em**
 
 
-#### Block vs. Inline
+### Block vs. Inline
 * **Block Elements:**
 
     * Take up the full width of their container.
@@ -388,7 +388,7 @@ Examples of Inline Elements: **span, a , strong , em**
     * Support only horizontal padding, margin, and line height.
 
 
-#### Display Convertion :
+### Display Convertion :
 * **Converting Block to Inline**
 ```css
 div {
@@ -407,7 +407,7 @@ span {
 ```
 
 
-####  Inline-Block (display: inline-block)
+###  Inline-Block (display: inline-block)
 * **Definition**: Combines the characteristics of both inline and block elements.
 * **Behavior**:
     * Elements are laid out inline, without line breaks, but can have width, height, padding, and margin.
@@ -424,7 +424,7 @@ div {
 ```
 
 
-#### Box Sizing Border Box (box-sizing: border-box)
+### Box Sizing Border Box (box-sizing: border-box)
 * **Definition**: Alters the box model so that width and height include padding and borders, not just the content.
 * **Default Behavior**: The default value is content-box, where width and height only include the content, and padding and borders are added outside.
 
@@ -438,8 +438,8 @@ div {
 }
 ```
 
-### Position Property :
-#### Position: Relative (position: relative)
+## Position Property :
+### Position: Relative (position: relative)
 The element is positioned relative to its normal position. You can move it using top, right, bottom, or left without affecting other elements.
 
 
@@ -450,7 +450,7 @@ The element is positioned relative to its normal position. You can move it using
   left: 30px;
 }
 ```
-#### position: absolute;
+### position: absolute;
 The element is positioned relative to its nearest positioned ancestor (not static). If no such ancestor exists, it is positioned relative to the initial containing block (usually the viewport).
 
 
@@ -462,7 +462,7 @@ The element is positioned relative to its nearest positioned ancestor (not stati
   right: 20px;
 }
 ```
-#### position: fixed;
+### position: fixed;
 The element is positioned relative to the viewport, meaning it stays in the same place even when the page is scrolled.
 
 ```css
@@ -472,7 +472,7 @@ The element is positioned relative to the viewport, meaning it stays in the same
   left: 10px;
 }
 ```
-#### position: sticky;
+### position: sticky;
 The element toggles between relative and fixed positioning, depending on the scroll position. It "sticks" to a defined position as you scroll past it.
 
 
@@ -484,8 +484,8 @@ The element toggles between relative and fixed positioning, depending on the scr
   background-color: yellow;
 }
 ```
-### Units :
-#### px (Pixels)
+## Units :
+### px (Pixels)
 A fixed unit representing the number of pixels on the screen. It provides precise control but is not responsive to different screen sizes.
 
 
@@ -496,7 +496,7 @@ A fixed unit representing the number of pixels on the screen. It provides precis
   height: 100px;
 }
 ```
-#### % (Percentage)
+### % (Percentage)
 A relative unit based on the parent element's size. It is useful for creating responsive designs.
 ```css
 .box {
@@ -504,7 +504,7 @@ A relative unit based on the parent element's size. It is useful for creating re
   height: 30%;
 }
 ```
-#### em
+### em
 A relative unit based on the font size of the element's parent. 1em equals the current font size. It scales with the element's font size.
 
 ```css
@@ -512,7 +512,7 @@ A relative unit based on the font size of the element's parent. 1em equals the c
   font-size: 2em; /* If the parent font size is 16px, this will be 32px */
 }
 ```
-#### rem
+### rem
 A relative unit based on the root element's (usually <html>) font size. It provides consistent scaling across the entire document.
 
 ```css
@@ -520,7 +520,7 @@ A relative unit based on the root element's (usually <html>) font size. It provi
   font-size: 1.5rem; /* If the root font size is 16px, this will be 24px */
 }
 ```
-#### vh (Viewport Height)
+### vh (Viewport Height)
 A relative unit based on the height of the viewport. 1vh equals 1% of the viewport's height.
 
 ```css
@@ -528,7 +528,7 @@ A relative unit based on the height of the viewport. 1vh equals 1% of the viewpo
   width: 50vw; /* 50% of the viewport's width */
 }
 ```
-#### vw (Viewport Width)
+### vw (Viewport Width)
 A relative unit based on the width of the viewport. 1vw equals 1% of the viewport's width.
 
 
@@ -538,7 +538,7 @@ A relative unit based on the width of the viewport. 1vw equals 1% of the viewpor
 }
 ```
 
-#### float
+### float
 The float property is used to position an element to the left or right of its container, allowing text or inline elements to wrap around it.
 
 **Common values:**
@@ -553,7 +553,7 @@ The float property is used to position an element to the left or right of its co
   margin: 10px;
 }
 ```
-#### clear
+### clear
 The clear property is used to control the behavior of elements that follow floated elements, ensuring that they do not wrap around the floated elements.
 
 **Common values:**
@@ -567,7 +567,7 @@ The clear property is used to control the behavior of elements that follow float
   clear: both;
 }
 ```
-#### overflow
+### overflow
 The overflow property controls what happens to content that is too large for its container.
 
 **Common values:**
@@ -582,11 +582,11 @@ The overflow property controls what happens to content that is too large for its
   overflow: scroll;
 }
 ```
-### FlexBox
+## FlexBox
 Flexbox is a layout model that allows you to design complex layouts with ease by distributing space along a container's main and cross axes.
 
 
-#### display: flex;
+### display: flex;
 Defines a flex container and enables the flex context for its children (flex items).
 
 ```css
@@ -594,7 +594,7 @@ Defines a flex container and enables the flex context for its children (flex ite
   display: flex;
 }
 ```
-#### flex-direction
+### flex-direction
 Specifies the direction of the flex items in the flex container.
 
 **Common values:**
@@ -609,7 +609,7 @@ Specifies the direction of the flex items in the flex container.
   flex-direction: row;
 }
 ```
-#### flex-wrap
+### flex-wrap
 Specifies whether the flex items should wrap or not within the container.
 
 **Common values**:
@@ -621,14 +621,14 @@ Specifies whether the flex items should wrap or not within the container.
   flex-wrap: wrap;
 }
 ```
-#### flex-flow
+### flex-flow
 A shorthand property for flex-direction and flex-wrap.
 ```css
 .flex-container {
   flex-flow: row wrap;
 }
 ```
-#### justify-content
+### justify-content
 Aligns flex items along the main axis (horizontally by default).
 
 **Common values:**
@@ -643,7 +643,7 @@ Aligns flex items along the main axis (horizontally by default).
   justify-content: center;
 }
 ```
-#### align-items
+### align-items
 Aligns flex items along the cross axis (vertically by default).
 
 **Common values:**
@@ -657,7 +657,7 @@ Aligns flex items along the cross axis (vertically by default).
   align-items: center;
 }
 ```
-#### align-content
+### align-content
 Aligns flex lines (rows or columns) within the flex container when there is extra space on the cross axis.
 
 **Common values:**
@@ -673,7 +673,7 @@ Aligns flex lines (rows or columns) within the flex container when there is extr
   align-content: space-between;
 }
 ```
-#### order
+### order
 Controls the order of individual flex items. The default order is 0.
 
 ```css
@@ -681,7 +681,7 @@ Controls the order of individual flex items. The default order is 0.
   order: 2;
 }
 ```
-#### flex-grow
+### flex-grow
 
 Defines the ability of a flex item to grow relative to the rest of the flex items when space is available. The default value is 0.
 
@@ -691,14 +691,14 @@ Defines the ability of a flex item to grow relative to the rest of the flex item
   flex-grow: 1;
 }
 ```
-#### flex-shrink
+### flex-shrink
 Defines the ability of a flex item to shrink relative to the rest of the flex items when space is limited. The default value is 1.
 ```css
 .flex-item {
   flex-shrink: 2;
 }
 ```
-#### flex-basis
+### flex-basis
 Specifies the initial size of a flex item before any space distribution occurs. It can be specified in any CSS size unit (e.g., px, %, em). The default value is auto.
 
 ```css
@@ -706,7 +706,7 @@ Specifies the initial size of a flex item before any space distribution occurs. 
   flex-basis: 200px;
 }
 ```
-#### align-self
+### align-self
 Allows you to override the align-items property for individual flex items, aligning them individually along the cross axis.
 
 **Common values:**
@@ -717,122 +717,122 @@ Allows you to override the align-items property for individual flex items, align
   align-self: flex-end;
 }
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
 ```
-#### 
+### 
 
 ```css
 
