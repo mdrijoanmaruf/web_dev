@@ -1,7 +1,7 @@
 # HTML
 
 
-### Boilerplate :
+## Boilerplate :
 
 ```html
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 ```
 
 
-### Headings :
+## Headings :
 
 ```html
  <!-- Main heading, typically the page title -->
@@ -40,7 +40,7 @@
 ```
 
 
-### Contailer :
+## Contailer :
 Container tags are the tags that contain some data such as text, image, etc. There are several container tags in HTML.
 ```html
 <div> 
@@ -49,14 +49,14 @@ Container tags are the tags that contain some data such as text, image, etc. The
 ```
 
 
-### span tag :
+## span tag :
 The span is a container for inline content
 ```html
 <span> This is span block </span>
 ```
 
 
-### p tag :
+## p tag :
 The p tag is used to create a paragraph in HTML
 
 ```html
@@ -64,7 +64,7 @@ The p tag is used to create a paragraph in HTML
 ```
 
 
-### pre tag :
+## pre tag :
 The pre tag represents pre-formatted text
 ```html
 <pre> Hello
@@ -73,7 +73,7 @@ The pre tag represents pre-formatted text
 ```
 
 
-### code tag :
+## code tag :
 The code tag is used to represent source codes in HTML
 ```c
 <code>
@@ -94,7 +94,7 @@ int main() {
 ```
 
 
-### Text Formatting :
+## Text Formatting :
 Text formatting tags are used to format text or data in HTML documents. You can do certain things like creating italic, bold, and strong text to make your document look more attractive and understandable.
 ```html
 <!-- Bold text using <b> -->
@@ -120,9 +120,9 @@ This is superscript: X<sup>2</sup>.<br><br
 ```
 
 
-### Lists :
+## Lists :
 Lists can be either numerical, alphabetic, bullet, or other symbols. You can specify list type and list items in HTML for a clean document.
-#### ol tag :
+### ol tag :
 The ordered list starts with ol tag and each list item starts with an li tag.
 
 ```html
@@ -134,7 +134,7 @@ The ordered list starts with ol tag and each list item starts with an li tag.
 ```
 
 
-#### ul tag :
+### ul tag :
 
 ```html
 <ul>
@@ -144,10 +144,10 @@ The ordered list starts with ol tag and each list item starts with an li tag.
 ```
 
 
-### Media :
+## Media :
 Media is anything that is present in digital form such as image, video, audio, etc.
 
-#### audio tag :
+### audio tag :
 It is used to embed sound content in the document.
 ```html
 <audio controls>
@@ -157,14 +157,14 @@ It is used to embed sound content in the document.
 ```
 
 
-#### img tag :
+### img tag :
 It is used to embed or import images in a webpage.
 ```html
 <img src="Source_of_image" alt="Alternate text">
 ```
 
 
-#### video tag :
+### video tag :
 It is used to embed videos on a webpage.
 ```html
 <video width="480" height="320" controls>
@@ -174,10 +174,10 @@ It is used to embed videos on a webpage.
 ```
 
 
-### Table :
+## Table :
 A table is a collection of rows and columns. It is used to represent data in tabular form.
 
-#### Table Structure :
+### Table Structure :
 ```html
 <table border="1">
     <caption>Demo Table</caption>
@@ -210,14 +210,14 @@ A table is a collection of rows and columns. It is used to represent data in tab
 ```
 ![alt text](Img/table_html.png)
 
-### a tag :
+## a tag :
 a or anchor tag defines a hyperlink. When clicked, it takes you to some other page
 ```html
 <a href="https://www.codewithharry.com/">Visit CodeWithHarry.com!</a>
 ```
 
 
-### Form :
+## Form :
 We use various input types and buttons inside a form as form elements
 
 
@@ -292,7 +292,7 @@ We use various input types and buttons inside a form as form elements
 ```
 ![alt text](Img/html_form.png)
 
-### Characters & Symbols :
+## Characters & Symbols :
 Some symbols are not directly present on the keyboard, but there are some ways to use them in HTML documents. We can display them either by entity name, decimal, or hexadecimal value.
 ```html
 <p>Less Than: &lt;</p>
@@ -308,7 +308,7 @@ Some symbols are not directly present on the keyboard, but there are some ways t
 ```
 ![alt text](Img/html_char_symble.png)
 
-### HTML Layout :
+## HTML Layout :
 
 ```html
 <!DOCTYPE html>
@@ -372,7 +372,7 @@ Some symbols are not directly present on the keyboard, but there are some ways t
 ```
 
 
-### Meta Tags :
+## Meta Tags :
 Meta tags define metadata about the document, such as author, description, and keywords.
 ```html
 <meta name="description" content="This is a description of the page">
@@ -381,7 +381,7 @@ Meta tags define metadata about the document, such as author, description, and k
 ```
 
 
-### CSS Integration :
+## CSS Integration :
 CSS integration can be done to style our HTML document using internal or external CSS.
 ```html
 <style>
@@ -392,7 +392,7 @@ CSS integration can be done to style our HTML document using internal or externa
 ```
 
 
-### JavaScript Integration :
+## JavaScript Integration :
 Embed JavaScript directly or link to an external file for added functionality.
 ```html
 <script>
@@ -403,23 +403,23 @@ Embed JavaScript directly or link to an external file for added functionality.
 ```
 
 
-### Comments :
+## Comments :
 Comments allow you to leave notes in your code, which are ignored by browsers.
 ```html
 <!-- This is a comment -->
 ```
 
 
-### Emmet :
+## Emmet :
 Usefull for write code faster way.
-#### h1+h2+h3
+### h1+h2+h3
 ```html
 <h1></h1>
 <h2></h2>
 <h3></h3>
 ```
 
-#### ul>li*5
+### ul>li*5
 
 ```html
 <ul>
@@ -432,7 +432,7 @@ Usefull for write code faster way.
 ```
 
 
-#### ul>(li*3>a[href="#"])+p
+### ul>(li*3>a[href="#"])+p
 ```html
 <ul>
     <li><a href="#"></a></li>
@@ -442,25 +442,25 @@ Usefull for write code faster way.
 <p></p>
 ```
 
-#### p{Hello World}
+### p{Hello World}
 ```html
 <!-- p{Hello World} -->
 <p>Hello World</p>
 ```
 
 
-#### div.container
+### div.container
 ```html
 <div class="container"></div>
 ```
 
-#### div.container.primary
+### div.container.primary
 ```html
 <div class="container primary"></div>
 ```
 
 
-#### div#main
+### div#main
 ```html
 <div id="main"></div>
 ```

@@ -718,27 +718,76 @@ Allows you to override the align-items property for individual flex items, align
   align-self: flex-end;
 }
 ```
-### 
+## Media Queries
+Media queries are a feature in CSS that allow you to apply styles conditionally based on certain criteria, such as the screen size, device orientation, resolution, and more. They are essential for creating responsive web designs that adapt to different devices.
+
 
 ```css
-
+/* Basic syntex */
+@media media-type and (media-feature: value) {
+  /* CSS rules go here */
+}
 ```
-### 
+* media-type: Defines the type of device (e.g., screen, print, all).
+* media-feature: Defines conditions like screen width, height, orientation, etc.
+### Responsive Design (Screen Width)
+
+
 
 ```css
+/* For devices with a maximum width of 600px (e.g., mobile phones) */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+}
 
+/* For devices with a minimum width of 601px and maximum width of 1200px (e.g., tablets) */
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+/* For devices with a minimum width of 1201px (e.g., desktops) */
+@media screen and (min-width: 1201px) {
+  .container {
+    width: 70%;
+    padding: 30px;
+  }
+}
 ```
-### 
+### Device Orientation
+Apply styles based on whether the device is in portrait or landscape orientation.
 
 ```css
+/* For devices in landscape mode */
+@media screen and (orientation: landscape) {
+  .gallery {
+    display: flex;
+    flex-direction: row;
+  }
+}
 
+/* For devices in portrait mode */
+@media screen and (orientation: portrait) {
+  .gallery {
+    display: flex;
+    flex-direction: column;
+  }
+}
 ```
-### 
-
+### Combining Multiple Conditions
 ```css
-
+@media screen and (min-width: 768px) and (orientation: landscape) {
+  .sidebar {
+    display: block;
+  }
+}
 ```
-### 
+## Shadow 
 
 ```css
 
