@@ -129,7 +129,7 @@ p {
 ```
 
 
-### Font Weidth :
+### Font  :
 Controls the thickness (or boldness) of the font. Common values are normal, bold, bolder, lighter, or numeric values (100 to 900).
 ```css
 p {
@@ -275,7 +275,7 @@ div {
 ```
 
 
-### Weidth :
+### Width :
 Same as heigth.
 ```css
 div {
@@ -787,105 +787,537 @@ Apply styles based on whether the device is in portrait or landscape orientation
   }
 }
 ```
-## Shadow 
+## Box Shadow 
+### Basic Shadow :
+A simple shadow with no blur or spread.
+```css
+.box {
+  box-shadow: 5px 5px;
+}
+```
+### Blurred Shadow :
+Adds a blur effect to the shadow.
+```css
+.box {
+  box-shadow: 5px 5px 10px;
+}
+```
+### Colorful Shadow
+A shadow with a specific color.
+```css
+.box {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Semi-transparent black shadow */
+}
+```
+### Spread Shadow
+Adjusts the spread of the shadow to make it larger or smaller.
+```css
+.box {
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5); /* Slightly larger shadow */
+}
+```
+### Inset Shadow
+Creates an inner shadow (shadow inside the element).
 
 ```css
+.box {
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5); /* Inner shadow */
+}
+```
+### Multiple Shadows
+You can add multiple shadows to an element by separating them with commas.
+
+```css
+.box {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+              -5px -5px 10px rgba(255, 0, 0, 0.5); /* Two shadows: one black, one red */
+}
+```
+## Text Shadow :
+### Basic Text Shadow
+A simple shadow with no blur.
+
+```css
+.text {
+  text-shadow: 2px 2px;
+}
+```
+### Blurred Text Shadow
+Adds a blur effect to the shadow.
+```css
+.text {
+  text-shadow: 2px 2px 5px;
+}
+```
+### Colored Text Shadow
+A shadow with a specific color.
+
+```css
+.text {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Semi-transparent black shadow */
+}
+```
+### Multiple Text Shadows
+You can apply multiple shadows to text by separating them with commas.
+```css
+.text {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5),
+               -2px -2px 5px rgba(255, 0, 0, 0.5); /* Two shadows: one black, one red */
+}
+```
+### Glowing Text Effect
+
+Create a glow effect around the text using a large blur radius and a bright color.
+```css
+.text {
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.8); /* Yellow glow effect */
+}
+```
+### Inset Text Shadow
+While text-shadow doesn't directly support inset shadows like box-shadow, you can simulate it by combining multiple shadows.
+
+
+```css
+.text {
+  text-shadow: 1px 1px 2px #fff, /* Light shadow for highlight */
+               -1px -1px 2px #000; /* Dark shadow for depth */
+}
+```
+## Custom Properties(Variable)
+### Declaring a Variable
+Variables are defined using the -- prefix and can be declared globally or within a specific selector.
+```css
+:root {
+  --primary-color: #3498db;
+  --padding-size: 10px;
+  /* In this example, --primary-color and --padding-size are custom properties that can be reused. */
+}
+```
+### Using a Variable
+
+To use a variable, reference it using the var() function.
+
+```css
+.button {
+  background-color: var(--primary-color);
+  padding: var(--padding-size);
+}
+```
+### Local vs. Global Variables
+
+* **Global Variables**: Defined in the :root selector, making them accessible throughout the entire stylesheet.
+* **Local Variables**: Defined within a specific selector, making them available only within that selector.
+
+```css
+.card {
+  --card-bg: #ffffff;
+  background-color: var(--card-bg);
+  padding: var(--padding-size); /* Uses global variable */
+}
+```
+### Fallback Values
+
+You can provide a fallback value in case the variable is not defined.
+
+```css
+.alert {
+  color: var(--secondary-color, #e74c3c); /* Fallback to #e74c3c if --secondary-color is not defined */
+}
+```
+## Animation
+CSS animations are typically created using two main components:
+
+1. **@keyframes Rule**: Defines the stages of the animation and the styles at each stage.
+2. **Animation Properties**: Applied to an element to control the animation's timing, duration, and other characteristics.
+
+### Define the @keyframes
+The @keyframes rule specifies the CSS styles that will be applied at different stages of the animation. You can use percentages (0% to 100%) or keywords like from and to.
+```css
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+```
+### Apply Animation Properties
+Once you have defined the @keyframes, you apply the animation to an element using the animation properties.
+
+```css
+.box {
+  animation-name: slide-in;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+```
+#### 1. animation-name
+Specifies the name of the @keyframes to use for the animation.
+```css
+animation-name: slide-in;
+```
+#### 2. animation-duration
+Defines how long the animation should take to complete one cycle.
+
+```css
+animation-duration: 2s; /* 2 seconds */
+```
+
+#### 3. animation-timing-function
+Specifies the speed curve of the animation.
+
+**Common values:**
+* **linear**: The animation has the same speed from start to end.
+* **ease**: Starts slow, then fast, then slow again (default).
+* **ease-in**: Starts slow, then speeds up.
+* **ease-out**: Starts fast, then slows down.
+* **ease-in-out**: Starts slow, speeds up, then slows down.
+
+```css
+animation-timing-function: ease-in-out;
+```
+
+#### 4. animation-delay
+Specifies a delay before the animation starts.
+```css
+animation-delay: 0.5s; /* 0.5 second delay */
+```
+
+#### 5. animation-iteration-count
+Defines the number of times the animation should repeat.
+
+**Common values:**
+* **infinite**: The animation repeats indefinitely.
+* **A number**: Specifies how many times the animation should play.
+
+```css
+animation-iteration-count: 3; /* Repeats 3 times */
+```
+
+#### 6. animation-direction
+
+Defines the direction of the animation.
+
+**Common values:**
+* **normal**: The animation plays forward (default).
+* **reverse**: The animation plays in reverse.
+* **alternate**: The animation alternates between forward and reverse on each cycle.
+* **alternate-reverse**: The animation alternates, starting in reverse.
+
+```css
+animation-direction: alternate;
+```
+
+#### 7. animation-fill-mode
+
+Specifies how styles are applied before and after the animation plays.
+
+**Common values:**
+* **none**: The animation does not apply styles outside its duration (default).
+* **forwards**: Retains the styles of the last keyframe after the animation ends.
+* **backwards**: Applies the styles of the first keyframe before the animation starts.
+* **both**: Applies both forwards and backwards styles.
+
+```css
+animation-fill-mode: forwards;
+```
+
+#### 8. animation-play-state
+Allows you to pause and resume the animation.
+
+**Common values:**
+* **running**: The animation is running (default).
+* **paused**: The animation is paused.
+```css
+animation-play-state: paused;
+```
+
+#### Animation Shorthand Property
+animation: [animation-name] [animation-duration] [animation-timing-function] [animation-delay] [animation-iteration-count] [animation-direction] [animation-fill-mode] [animation-play-state];
+```css
+animation: bounce 2s ease-in-out 0.5s infinite alternate forwards;
+```
+
+## Pseudo-Classes
+**CSS Pseudo-Classes**  
+Pseudo-classes are keywords added to selectors to apply styles based on an element's state or position, without extra classes or JavaScript.
+
+### :hover
+
+Applies styles when the mouse pointer is over an element.
+```css
+a:hover {
+  color: #ff5733; /* Change link color on hover */
+}
+```
+### :focus
+Applies styles when an element has focus (e.g., input fields).
+```css
+input:focus {
+  border-color: #ff5733; /* Change border color of input when focused */
+}
+```
+
+### :visited
+Applies styles to links that have been visited by the user.
+```css
+a:visited {
+  color: #6c757d; /* Change color of visited links */
+}
+```
+
+### :link
+Applies styles to links that have not yet been visited.
+
+```css
+a:link {
+  color: #3498db; /* Color for unvisited links */
+}
+```
+
+### :first-child
+Applies styles to the first child element of its parent.
+```css
+p:first-child {
+  font-weight: bold; /* Make the first paragraph bold */
+}
+```
+
+### :last-child
+Applies styles to the last child element of its parent.
+```css
+p:last-child {
+  margin-bottom: 0; /* Remove bottom margin from the last paragraph */
+}
+```
+
+### :nth-child(n)
+Applies styles to the nth child element of its parent.
+```css
+li:nth-child(odd) {
+  background-color: #f2f2f2; /* Alternate background color for odd list items */
+}
+```
+
+### :checked
+Applies styles to input elements that are checked (e.g., checkboxes, radio buttons).
+
+```css
+input:checked {
+  background-color: #3498db; /* Change background color of checked inputs */
+}
+```
+
+### :disabled
+Applies styles to disabled form elements.
+
+```css
+input:disabled {
+  background-color: #e0e0e0; /* Change background color of disabled inputs */
+}
+```
+
+## Transition :
+**CSS Transitions**  
+CSS transitions allow gradual changes between styles over a set duration, creating smooth, animated effects that enhance user experience with fluid and interactive designs.
 
 ```
+transition: [property] [duration] [timing-function] [delay];
+```
+
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.box:hover {
+  background-color: #e74c3c;
+  transform: scale(1.2);
+}
+```
+
+### Transition Property :
+#### transition-property
+Specifies the CSS property to apply the transition to.
+
+```css
+transition-property: background-color;
+```
+
+#### transition-duration
+Defines the duration of the transition.
+
+```css
+transition-duration: 0.5s;
+```
+
+### transition-timing-function
+Defines the timing function for the transition, affecting the speed curve.
+
+**Common values:**
+* **linear**: Constant speed.
+* **ease**: Starts slow, speeds up, then slows down.
+* **ease-in**: Starts slow, then speeds up.
+* **ease-out**: Starts fast, then slows down.
+* **ease-in-out**: Starts slow, speeds up, then slows down.
+```css
+transition-timing-function: ease-in-out;
+```
+
+#### transition-delay
+Defines the delay before the transition starts.
+```css
+transition-delay: 0.5s;
+```
+
+## 2D Transform
+CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, altering their position, size, and orientation without affecting the layout of other elements.
+
+### transform: translate(x, y)
+**Effect**: Moves an element from its current position by x units horizontally and y units vertically.
+```css
+.box {
+  transform: translate(50px, 100px);
+}
+```
+
+### transform: rotate(angle)
+**Effect**: Rotates the element 45 degrees clockwise.
+
+```css
+.box:hover {
+  transform: rotate(45deg);
+}
+```
+
+### transform: scale(x, y)
+**Effect**: Scales the element to 1.5 times its original size.
+```css
+.box:hover {
+  transform: scale(1.5);
+}
+ /* The scale function increases the element’s size proportionally based on the provided value. A value of 1 is the original size. */
+```
+
+### transform: skew(x-angle, y-angle)
+
+**Effect**: Skews the element by 20 degrees horizontally and 10 degrees vertically.
+
+```css
+.box:hover {
+  transform: skew(20deg, 10deg);
+}
+
+```
+  
+### transform: matrix(a, b, c, d, e, f)
+**Effect**: Applies a combination of transformations including translation, skew, and scaling using a matrix.
+```css
+.box:hover {
+  transform: matrix(1, 0.2, 0.2, 1, 50, 50);
+}
+```
+
 ### 
 
 ```css
 
 ```
-### 
 
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
-### 
-
-```css
-
-```
 ### 
 
 ```css
 
 ```
 
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
+
+### 
+
+```css
+
+```
 
