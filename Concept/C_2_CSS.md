@@ -1158,7 +1158,7 @@ Defines the duration of the transition.
 transition-duration: 0.5s;
 ```
 
-### transition-timing-function
+#### transition-timing-function
 Defines the timing function for the transition, affecting the speed curve.
 
 **Common values:**
