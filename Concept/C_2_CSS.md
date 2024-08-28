@@ -1214,7 +1214,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 .box:hover {
   transform: skew(20deg, 10deg);
 }
-
 ```
   
 ### transform: matrix(a, b, c, d, e, f)
@@ -1225,17 +1224,330 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 }
 ```
 
+## CSS GRID (Container Properties)
+
+CSS Grid Layout is a powerful layout system that provides a way to arrange elements in rows and columns. The grid container is the parent element that holds grid items (children), and it controls the overall layout using various grid properties.
+
+### display
+* Defines the element as a grid container.
+* Values: grid (or inline-grid for inline grids)
+```css
+.grid-container {
+  display: grid;
+}
+```
+
+### grid-template-columns
+* Specifies the number and size of the columns in the grid.
+* Values: Lengths (e.g., 100px), percentages (e.g., 50%), fr units, or keywords like auto.
+
+```css
+.grid-container {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+```
+
+### grid-template-rows
+* Specifies the number and size of the rows in the grid.
+* Values: Lengths, percentages, fr units, or keywords like auto.
+
+```css
+.grid-container {
+  grid-template-rows: 100px 200px auto;
+}
+```
+
+### grid-template-areas
+* Defines grid areas by assigning names to sections of the grid, making it easy to place grid items.
+* Values: Named grid areas.
+```css
+.grid-container {
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer";
+}
+```
+
+### grid-template
+* A shorthand for defining both grid-template-rows, grid-template-columns, and grid-template-areas in one declaration.
+* Values: Combination of rows, columns, and areas.
+```css
+.grid-container {
+  grid-template:
+    "header header" 100px
+    "sidebar content" 1fr
+    "footer footer" 50px
+    / 1fr 2fr;
+}
+```
+
+### grid-column-gap
+* Specifies the gap (gutter) between columns.
+* Values: Length values (e.g., 10px).
+
+```css
+.grid-container {
+  grid-column-gap: 20px;
+}
+```
+
+### grid-row-gap
+* Specifies the gap (gutter) between rows.
+* Values: Length values.
+
+```css
+.grid-container {
+  grid-row-gap: 15px;
+}
+```
+
+### grid-gap
+* A shorthand for grid-column-gap and grid-row-gap.
+* Values: Two length values (grid-gap: row-gap column-gap;), or a single value for both.
+
+```css
+.grid-container {
+  grid-gap: 10px 20px;
+}
+```
+
+### justify-items
+* Aligns grid items along the row axis (horizontally).
+* Values: start, end, center, stretch
+```css
+.grid-container {
+  justify-items: center;
+}
+```
+
+### align-items
+* Aligns grid items along the column axis (vertically).
+* Values: start, end, center, stretch
+
+```css
+.grid-container {
+  align-items: stretch;
+}
+```
+
+### place-items
+* A shorthand for setting both justify-items and align-items.
+* Values: One or two values (e.g., center, start end).
+
+```css
+.grid-container {
+  place-items: center;
+}
+```
+
+### justify-content
+* Aligns the entire grid along the row axis within the grid container.
+* Values: start, end, center, stretch, space-between, space-around, space-evenly
+
+```css
+.grid-container {
+  justify-content: space-between;
+}
+```
+
+### align-content
+* Aligns the entire grid along the column axis within the grid container.
+* Values: Same as justify-content
+
+```css
+.grid-container {
+  align-content: center;
+}
+```
+
+### place-content
+* A shorthand for setting both justify-content and align-content.
+* Values: One or two values.
+
+```css
+.grid-container {
+  place-content: center space-around;
+}
+```
+
+### grid-auto-columns
+* Specifies the size of implicitly created columns.
+* Values: Length, percentage, auto, etc.
+```css
+.grid-container {
+  grid-auto-columns: 100px;
+}
+```
+
+### grid-auto-rows
+* Specifies the size of implicitly created rows.
+* Values: Length, percentage, auto, etc.
+
+```css
+.grid-container {
+  grid-auto-rows: 50px;
+}
+```
+
+
+### grid-auto-flow
+* Controls how auto-placed items are inserted into the grid.
+* Values: row, column, row dense, column dense
+
+```css
+.grid-container {
+  grid-auto-flow: row dense;
+}
+```
+
+
+### grid
+* A shorthand for setting all grid properties (**grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-flow, grid-auto-rows, grid-auto-columns**).
+* Values: Combination of grid properties.
+
+```css
+.grid-container {
+  grid: auto-flow / 1fr 2fr;
+}
+```
+
+
+## CSS GRID(Grid Items Properties)
+Grid items (children) are placed inside a grid container (parent). These items can be positioned and aligned within the grid using specific properties that define their size, location, and alignment.
+
+
+### grid-column-start
+* Defines the starting grid line for the grid item along the column axis.
+* Values: Line number, named grid area, or span keyword (to span multiple columns).
+
+```css
+.grid-item {
+  grid-column-start: 2;
+}
+/* The grid item starts at the 2nd column line. */
+```
+
+
+### grid-column-end
+* Defines the ending grid line for the grid item along the column axis.
+* Values: Line number, named grid area, or span keyword.
+
+```css
+.grid-item {
+  grid-column-end: 4;
+}
+/* The grid item ends at the 4th column line. */
+```
+
+### grid-row-start
+* Defines the starting grid line for the grid item along the row axis.
+* Values: Line number, named grid area, or span keyword.
+
+```css
+.grid-item {
+  grid-row-start: 1;
+}
+/* The grid item starts at the 1st row line. */
+```
+
+### grid-row-end
+* Defines the ending grid line for the grid item along the row axis.
+* Values: Line number, named grid area, or span keyword.
+
+```css
+.grid-item {
+  grid-row-end: 3;
+}
+/* The grid item ends at the 3rd row line. */
+```
+
+
+### grid-column
+* A shorthand for grid-column-start and grid-column-end.
+* Values: Start line / end line, or span keyword to span across multiple columns.
+
+```css
+.grid-item {
+  grid-column: 2 / 4;
+}
+/* The grid item spans from the 2nd to the 4th column line. */
+```
+
+### grid-row
+* A shorthand for grid-row-start and grid-row-end.
+* Values: Start line / end line, or span keyword to span across multiple rows.
+
+```css
+.grid-item {
+  grid-row: 1 / 3;
+}
+/* The grid item spans from the 1st to the 3rd row line. */
+```
+
+
+### grid-area
+* Defines a grid item’s placement by specifying a grid area name or a shorthand for setting all four placement properties (grid-row-start, grid-column-start, grid-row-end, grid-column-end).
+
+* Values: Named grid area or shorthand values.
+
+```css
+.grid-item {
+  grid-area: header;
+}
+/* The grid item is placed in the header area. */
+```
+
+```css
+.grid-item {
+  grid-area: 1 / 2 / 3 / 4;
+}
+/* The grid item starts at row 1/column 2 and ends at row 3/column 4. */
+```
+
+
+### justify-self
+* Aligns the grid item within its grid area along the column axis (horizontally).
+* Values: start, end, center, stretch
+
+```css
+.grid-item {
+  justify-self: center;
+}
+/* The grid item is centered horizontally within its grid area. */
+```
+
+
+### align-self
+* Aligns the grid item within its grid area along the row axis (vertically).
+* Values: start, end, center, stretch
+
+```css
+.grid-item {
+  align-self: end;
+}
+/* The grid item is aligned at the bottom within its grid area. */
+```
+
+
+### place-self
+* A shorthand for setting both justify-self and align-self.
+* Values: One or two values (e.g., center, start end).
+
+```css
+.grid-item {
+  place-self: center stretch;
+}
+/* The grid item is centered horizontally and stretched vertically within its grid area. */
+```
+
+
 ### 
 
 ```css
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1243,11 +1555,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1255,11 +1562,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1267,11 +1569,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1279,11 +1576,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1291,11 +1583,6 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
@@ -1303,17 +1590,405 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 
 ```
 
-### 
-
-```css
-
-```
 
 ### 
 
 ```css
 
 ```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
+
+### 
+
+```css
+
+```
+
 
 ### 
 

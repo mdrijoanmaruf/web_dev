@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Card</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        }
+
+        .container{
+            height: 100%;
+            width: 100%;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            width: 350px;
+            align-items: center;
+            margin: 100px auto;
+            border-radius: 10px;
+            border: 0px solid blue;
+            background-color: white;
+            box-shadow: 1px 1px 20px rgb(55, 55, 226);
+        }
+        .box img{
+            width: 350px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .box h2{
+            padding: 15px;
+            font-size: 27px;
+        }
+        .text{
+            display: flex;
+            width: 80%;
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .payment{
+            background-color: rgb(199, 241, 206);
+            width: 87%;
+            height: 40px;
+            display: flex;
+            gap: 20px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .payment img{
+            height: 30px;
+            width: 30px;
+        }
+
+        .btn input{
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 10px;
+            background-color: rgb(26, 26, 59);
+            color: white;
+        }
+
+        .btn2 p{
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="img">
+                <img src="img.jpg" alt="Server Image">
+            </div>
+
+            <div class="heading">
+                <h2>Order Summary</h2>
+            </div>
+
+            <div class="text">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, enim aspernatur! Debitis ullam voluptas amet consequatur quam nemo quis sequi!</p>
+            </div>
+
+            <div class="payment">
+                <img src="music-player.png" alt="" class="icon">
+                <p class="text2">
+                    Annual Plan $99.9/year
+                </p>
+                <a href="#">Change</a>
+            </div>
+
+            <div class="btn">
+                <input type="button" value="Proced To Payment">
+            </div>
+
+            <div class="btn2">
+                <p>Cancel Order</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
