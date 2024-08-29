@@ -1224,6 +1224,95 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
 }
 ```
 
+## 3D Transforms :
+### rotateX(angle)
+Rotates an element around the X-axis.
+
+```css
+.rotate-x {
+  transform: rotateX(45deg); /* Rotates the element 45 degrees around the X-axis */
+}
+```
+### rotateY(angle)
+Rotates an element around the Y-axis.
+
+```css
+.rotate-y {
+  transform: rotateY(45deg); /* Rotates the element 45 degrees around the Y-axis */
+}
+```
+### rotateZ(angle)
+Rotates the element around the Z-axis (similar to 2D rotation).
+
+```css
+.rotate-z {
+  transform: rotateZ(45deg); /* Rotates the element 45 degrees around the Z-axis */
+}
+```
+### translateX(length)
+Moves the element along the X-axis.
+
+```css
+.translate-x {
+  transform: translateX(100px); /* Moves the element 100px to the right along the X-axis */
+}
+```
+### translateY(length)
+Moves the element along the Y-axis.
+
+```css
+.translate-y {
+  transform: translateY(100px); /* Moves the element 100px down along the Y-axis */
+}
+```
+### translateZ(length)
+Moves the element along the Z-axis (toward or away from the viewer).
+
+```css
+.translate-z {
+  transform: translateZ(100px); /* Moves the element 100px closer to the viewer along the Z-axis */
+}
+```
+### scaleX(factor)
+Scales the element along the X-axis.
+
+```css
+.scale-x {
+  transform: scaleX(1.5); /* Scales the element 1.5 times its original width along the X-axis */
+}
+```
+### scaleY(factor)
+Scales the element along the Y-axis.
+
+```css
+.scale-y {
+  transform: scaleY(1.5); /* Scales the element 1.5 times its original height along the Y-axis */
+}
+```
+### scaleZ(factor)
+Scales the element along the Z-axis.
+
+```css
+.scale-z {
+  transform: scaleZ(1.5); /* Scales the element 1.5 times along the Z-axis, making it appear closer or further away */
+}
+```
+### One-Shot 3D Transform Example
+You can combine multiple 3D transforms in a single transform property.
+
+```css
+.transform-3d {
+  transform: rotateX(45deg) rotateY(45deg) translateZ(50px) scale(1.2); 
+  /* 
+  Combines multiple 3D transforms:
+  - Rotates the element 45 degrees around the X-axis
+  - Rotates the element 45 degrees around the Y-axis
+  - Moves the element 50px closer along the Z-axis
+  - Scales the element 1.2 times in all directions
+  */
+}
+```
+
 ## CSS GRID (Container Properties)
 
 CSS Grid Layout is a powerful layout system that provides a way to arrange elements in rows and columns. The grid container is the parent element that holds grid items (children), and it controls the overall layout using various grid properties.
@@ -1244,6 +1333,49 @@ CSS Grid Layout is a powerful layout system that provides a way to arrange eleme
 ```css
 .grid-container {
   grid-template-columns: 1fr 2fr 1fr;
+}
+```
+
+**Responsive Properties :**
+1. **autofit**
+
+* autofit adjusts the number of columns to fill the available space while ensuring that grid items take up as much space as possible.
+* If there's extra space, it will stretch the items to fill the container.
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+  grid-gap: 10px;
+}
+```
+2. **autofill**
+* autofill behaves similarly to autofit, but instead of stretching the grid items, it keeps creating new columns (even if they are empty) to fill the space.
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 10px;
+  /* Explanation: This creates as many 150px-wide columns as possible, just like autofit. However, instead of stretching items to fit the container, it will create additional columns if there's extra space, ensuring that all grid items have a consistent width. */
+}
+```
+3. **minmax**
+* minmax is a function used to define a range for the size of grid tracks (rows or columns). It allows you to set a minimum size and a maximum size.
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-gap: 10px;
+}
+```
+
+4. **Combining autofit, autofill, and minmax**
+Behavior: This grid layout will create as many columns as possible, each with a minimum width of 150px. The columns will expand to fill the available space, ensuring the grid is responsive to different screen sizes.
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
 }
 ```
 
@@ -1540,459 +1672,3 @@ Grid items (children) are placed inside a grid container (parent). These items c
 }
 /* The grid item is centered horizontally and stretched vertically within its grid area. */
 ```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
-
-### 
-
-```css
-
-```
-
