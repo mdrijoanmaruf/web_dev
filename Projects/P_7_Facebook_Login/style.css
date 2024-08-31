@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+}
+
+
+main{
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F4F7;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    width: 50%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.left h1{
+    font-size: 4rem;
+    color: #0866FF;
+}
+
+.left p{
+    padding-right: 20px;
+    font-size: 1.5rem;
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 1px 10px rgb(212, 212, 212);
+}
+
+.if{
+    height: 2rem;
+    padding: 20px;
+    margin: 10px;
+    font-size: 1.2rem;
+    width: 23rem;
+    height: 3.6rem;
+    border: 1px solid rgb(207, 206, 206);
+    margin: 10px 20px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+}
+
+#login{
+    padding: 0px !important;
+    height: 2.8rem;
+    font-weight: 800;
+    font-size: 25px;
+    background-color: #0866FF;
+    color: white;
+    border: 0px;
+    border-radius: 6px;
+}
+
+#text{
+    margin-top: 30px;
+    border-radius: 5px;
+
+}
+
+#password{
+    border-radius: 5px;
+}
+
+.form span{
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 15px;
+    color: #0866FF;
+}
+
+.new{
+    height: 3rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #42B72A;
+    color: white;
+    margin: 20px 90px;
+    border: 0px solid;
+    border-radius: 5px;
+}
+
+.text p{
+    padding: 20px;
+}
+
+.text span{
+    font-weight: bold;
+}
+
+hr{
+    margin: 0px 40px;
+    color: #F2F4F7;
+    border-color: #feffff;
+}

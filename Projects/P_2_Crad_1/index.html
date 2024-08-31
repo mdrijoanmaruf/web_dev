@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body{
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid rgba(0, 128, 0, 0.322);
+        height: 450px;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 20px rgb(48, 197, 3);
+    }
+    .img{
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .container img{
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .card h2 , p{
+        padding: 1px 20px;
+    }
+    .card:hover{
+        height: 500px;
+        width: 450px;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0.5s ;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="img">
+                <img src="img2.jpg" alt="A Bird Image">
+            </div>
+            <h2>Improve your front-end skills by building projects.</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus impedit repudiandae excepturi rem soluta eligendi minima. Porro deserunt deleniti id.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
