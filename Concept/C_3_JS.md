@@ -233,6 +233,247 @@ person.greet = function() {
 person.greet();  // Calls the method: Output: Hello, my name is Mayank
 ```
 
+### Add new Property :
+```js
+// Set year to 2025
+now.setFullYear(2025);
+console.log("Updated Year:", now);
+
+// Set month to December (11 because months are 0-indexed)
+now.setMonth(11);
+console.log("Updated Month:", now);
+
+// Set date (day of the month) to 25
+now.setDate(25);
+console.log("Updated Date:", now);
+
+// Set hours, minutes, and seconds
+now.setHours(15);
+now.setMinutes(45);
+now.setSeconds(30);
+console.log("Updated Time:", now);
+```
+
+### Cloning Object Using Iteration
+You can iterate over the object and copy its properties manually.
+```js
+const obj1 = { a: 1, b: 2, c: 3 };
+const clone1 = {};
+
+for (let key in obj1) {
+  if (obj1.hasOwnProperty(key)) {
+    clone1[key] = obj1[key];
+  }
+}
+
+console.log("Clone1:", clone1); // { a: 1, b: 2, c: 3 }
+```
+
+### Cloning Object Using Spread Operator (...)
+The spread operator is the most concise way to clone an object.
+```js
+const obj2 = { x: 10, y: 20 };
+const clone2 = { ...obj2 };
+
+console.log("Clone2:", clone2); // { x: 10, y: 20 }
+```
+
+### Cloning Using Object.assign()
+The Object.assign() method copies the properties from one or more source objects to a target object.
+```js
+const obj3 = { name: "Alice", age: 25 };
+const clone3 = Object.assign({}, obj3);
+
+console.log("Clone3:", clone3); // { name: "Alice", age: 25 }
+```
+
+**Merging Multiple Objects Using Object.assign()**
+You can also merge two or more objects into one using Object.assign().
+```js
+const objA = { firstName: "John" };
+const objB = { lastName: "Doe" };
+const mergedObj = Object.assign({}, objA, objB);
+
+console.log("Merged Object:", mergedObj); // { firstName: "John", lastName: "Doe" }
+```
+
+
+
+## Functions :
+
+### Basic Function :
+```js
+function greet() {
+  console.log("Hello, World!");
+}
+greet(); // Output: Hello, World!
+```
+
+### Return Function
+A function that returns a value using the return statement. The return statement exits the function and gives back a result.
+
+```js
+function add(a, b) {
+  return a + b;
+}
+console.log(add(5, 3)); // Output: 8
+```
+
+### Variable Function (Function Expression)
+In JavaScript, functions can be assigned to variables. This is called a function expression. These functions are not hoisted, meaning they cannot be called before they are defined.
+
+```js
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log(multiply(4, 5)); // Output: 20
+```
+### Arrow Function
+An arrow function is a shorthand way to write a function. It uses the => syntax and has special behavior for the this keyword (lexical scoping).
+
+```js
+const subtract = (a, b) => {
+  return a - b;
+};
+console.log(subtract(10, 4)); // Output: 6
+```
+```js
+// Single-line Return
+const subtract = (a, b) => a - b;
+console.log(subtract(10, 4)); // Output: 6
+```
+
+### Array of Functions
+You can store functions in an array and call them using array indexing.
+
+```js
+const funcs = [
+  function() { console.log("First function"); },
+  function() { console.log("Second function"); }
+];
+
+funcs[0](); // Outputs "First function"
+funcs[1](); // Outputs "Second function"
+```
+
+### Object with Functions
+Objects can have methods, which are functions associated with that object.
+
+```js
+const obj = {
+  greet: function() { console.log("Hello!"); },
+  farewell: function() { console.log("Goodbye!"); }
+};
+
+obj.greet(); // Outputs "Hello!"
+obj.farewell(); // Outputs "Goodbye!"
+```
+
+### Function Returning Another Function
+A function can return another function, which can then be called later.
+
+```js
+function outer() {
+  return function inner() {
+    console.log("Inner function");
+  };
+}
+
+const func = outer(); // `outer` returns `inner`
+func(); // Outputs "Inner function"
+```
+
+
+### Function Call Stack :
+The call stack is a LIFO (Last In, First Out) structure used to manage function execution in JavaScript.
+* Functions are pushed onto the stack when called.
+* As functions return, they're popped off the stack.
+* Execution continues until the stack is empty.
+
+```js
+function first() {
+  second();
+  console.log("First");
+}
+
+function second() {
+  third();
+  console.log("Second");
+}
+
+function third() {
+  console.log("Third");
+}
+first();
+
+// Output : 
+// Third
+// Second
+// First
+```
+first() → second() → third()
+third() finishes and is popped → second() finishes → first() finishes.
+
+### Function Default Parameter :
+```js
+// 1. Default Value
+function defaultValue(a = 10) {
+  console.log("a:", a); // Default: 10
+}
+
+// 2. null as a Default Value
+function defaultNull(b = null) {
+  console.log("b:", b); // Default: null
+}
+
+// 3. undefined as a Default Value
+function defaultUndefined(c = 5) {
+  console.log("c:", c); // Default: 5
+}
+
+// 4. Array as a Default Value
+function defaultArray(arr = [1, 2, 3]) {
+  console.log("arr:", arr); // Default: [1, 2, 3]
+}
+
+// 5. Object as a Default Value
+function defaultObject(obj = { x: 5, y: 10 }) {
+  console.log("obj:", obj); // Default: { x: 5, y: 10 }
+}
+
+// 6. Function as a Default Parameter
+function defaultFunction(fn = () => "Hello") {
+  console.log("fn:", fn()); // Default: "Hello"
+}
+
+// Function calls
+
+// 1. Default Value
+defaultValue();    // a: 10
+defaultValue(20);  // a: 20
+
+// 2. null as a Default Value
+defaultNull();     // b: null
+defaultNull("Hi"); // b: Hi
+
+// 3. undefined as a Default Value
+defaultUndefined();        // c: 5
+defaultUndefined(100);     // c: 100
+defaultUndefined(undefined); // c: 5
+
+// 4. Array as a Default Value
+defaultArray();          // arr: [1, 2, 3]
+defaultArray([10, 20]);  // arr: [10, 20]
+
+// 5. Object as a Default Value
+defaultObject();           // obj: { x: 5, y: 10 }
+defaultObject({ x: 50 });  // obj: { x: 50 }
+
+// 6. Function as a Default Parameter
+defaultFunction();            // fn: Hello
+defaultFunction(() => "Hi!"); // fn: Hi!
+```
+
 ## Array :
 ### push()
 Adds one or more elements to the end of an array and returns the new length of the array.
@@ -308,7 +549,7 @@ Applies a function against an accumulator and each element of the array to reduc
 
 ```js
 let numbers = [1, 2, 3];
-let sum = numbers.reduce((acc, n) => acc + n, 0); // 6
+let sum = numbers.reduce((acc, n) => acc + n, 0); // 6 (sum)
 ```
 
 ### sort()
@@ -335,13 +576,6 @@ let numbers = [1, 2, 3, 4];
 let found = numbers.find(n => n > 2); // 3
 ```
 
-### forEach()
-Executes a provided function once for each array element
-
-```js
-let fruits = ['apple', 'banana', 'orange'];
-fruits.forEach(fruit => console.log(fruit)); // Logs: apple, banana, orange
-```
 
 ### length
 Returns the number of elements in an array.
@@ -349,16 +583,6 @@ Returns the number of elements in an array.
 ```js
 let fruits = ['apple', 'banana', 'orange'];
 let count = fruits.length; // 3
-```
-
-### for...of
-Loops through the values of an iterable object (like an array).
-
-```js
-let fruits = ['apple', 'banana', 'orange'];
-for (let fruit of fruits) {
-  console.log(fruit); // Logs: apple, banana, orange
-}
 ```
 
 ### Arrays with Functions
@@ -373,31 +597,367 @@ let actions = [
 actions.forEach(action => action()); // Logs: Action 1, Action 2
 ```
 
-### 
-
+## Loop :
+### for loop
+Executes a block of code a specific number of times, based on a condition.
 ```js
-
+for (let i = 0; i < 5; i++) {
+  console.log(i); // Outputs 0 to 4
+}
 ```
 
-### 
+### while loop
+Executes a block of code as long as the specified condition is true.
 
 ```js
-
+let i = 0;
+while (i < 5) {
+  console.log(i); // Outputs 0 to 4
+  i++;
+}
 ```
 
-### 
+### do...while loop
+Executes the code block once before checking the condition, then continues while the condition is true.
 
 ```js
-
+let i = 0;
+do {
+  console.log(i); // Outputs 0 to 4
+  i++;
+} while (i < 5);
 ```
 
-### 
+### for...of loop
+Iterates over iterable objects like arrays, strings, etc.
+```js
+let arr = [10, 20, 30];
+for (let value of arr) {
+  console.log(value); // Outputs 10, 20, 30
+}
+```
+
+### for...in loop
+Iterates over the properties of an object (useful for enumerating keys).
+```js
+let obj = {a: 1, b: 2, c: 3};
+for (let key in obj) {
+  console.log(key); // Outputs "a", "b", "c"
+}
+```
+
+### forEach() loop
+forEach() is an array method that executes a provided function once for each array element. It doesn't return anything and can't be broken out of (unlike a for loop). It's commonly used to iterate over array elements.
 
 ```js
-
+let arr = [1, 2, 3];
+arr.forEach(function(element) {
+  console.log(element); // Outputs 1, 2, 3
+});
 ```
 
-### 
+## Hoisting :
+### var Hoisting:
+* Declarations using var are hoisted to the top of their scope.
+* Only the declaration is hoisted, not the initialization. As a result, variables declared with var will have a value of undefined if used before their assignment.
+
+```js
+console.log(a); // undefined (declaration is hoisted, but not the initialization)
+var a = 10;
+console.log(a); // 10
+```
+
+### let / const Hoisting:
+You cannot access let variables before their declaration. Doing so results in a ReferenceError.
+
+```js
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 20;
+```
+
+### Function Declarations Hoisting:
+* Function declarations are fully hoisted in JavaScript. This means both the function name and the entire function body are hoisted to the top of their scope.
+* You can call the function before its declaration.
+
+```js
+greet(); // "Hello, world!"
+function greet() {
+  console.log("Hello, world!");
+}
+```
+
+### let Function Expression
+Hoisted but not initialized. Calling before declaration results in a ReferenceError.
+
+```js
+console.log(sayHi); // ReferenceError
+let sayHi = function() {
+  console.log("Hi!");
+};
+```
+
+### const Function Expression
+Behaves like let. Hoisted but not initialized. Calling before declaration results in a ReferenceError.
+
+```js
+console.log(sayHello); // ReferenceError
+const sayHello = function() {
+  console.log("Hello!");
+};
+```
+
+### Class Expressions
+If a class is assigned to a variable using let or const, the behavior is the same as with function expressions: the variable is hoisted, but not initialized.
+
+```js
+console.log(MyClass); // ReferenceError: Cannot access 'MyClass' before initialization
+const MyClass = class {
+  constructor() {
+    console.log("Anonymous class created");
+  }
+};
+```
+
+## Variable Scoping :
+### Global Scope
+Variables declared outside any function or block are in the global scope and accessible throughout the entire code.
+```js
+var globalVar = "I am global";
+
+function showGlobal() {
+  console.log(globalVar); // Outputs: "I am global"
+}
+
+showGlobal();
+console.log(globalVar); // Outputs: "I am global"
+```
+
+### Function Scope
+Variables declared inside a function using var are in the function scope, meaning they are accessible only within that function.
+
+```js
+function myFunction() {
+  var localVar = "I am local";
+  console.log(localVar); // Outputs: "I am local"
+}
+
+myFunction();
+console.log(localVar); // ReferenceError: localVar is not defined
+```
+
+### Block Scope
+Variables declared inside a block (e.g., within {}) using let or const are block-scoped, meaning they are only accessible within that block.
+
+```js
+if (true) {
+  let blockVar = "I am block-scoped";
+  console.log(blockVar); // Outputs: "I am block-scoped"
+}
+
+console.log(blockVar); // ReferenceError: blockVar is not defined
+```
+
+## Class & Objects :
+A class is a blueprint for creating objects with shared properties and methods. 
+```js
+class Person {
+  #age; // Private field
+
+  constructor(name, age) {
+    this.name = name; // Public property
+    this.#age = age;  // Private property
+  }
+
+  get age() { return this.#age; } // Getter for private field
+
+  set age(newAge) { // Setter with validation
+    if (newAge > 0) this.#age = newAge;
+    else console.log("Age must be positive!");
+  }
+
+  greet() { // Public method
+    console.log(`Hello, my name is ${this.name} and I am ${this.#age} years old.`);
+  }
+}
+
+// Object creation
+const person1 = new Person("Alice", 25);
+
+person1.greet();        // "Hello, my name is Alice and I am 25 years old."
+console.log(person1.age); // 25 (using getter)
+
+person1.age = 30;        // Setting new age
+console.log(person1.age); // 30
+```
+
+## In-Built Objects :
+### Math :
+```js
+// Math.PI - Value of Pi
+console.log("PI:", Math.PI);
+
+// Math.min() - Smallest value
+console.log("Min:", Math.min(5, 10, -3, 0));
+
+// Math.max() - Largest value
+console.log("Max:", Math.max(5, 10, -3, 0));
+
+// Math.round() - Round to nearest integer
+console.log("Round:", Math.round(4.6)); // 5
+console.log("Round:", Math.round(4.4)); // 4
+
+// Math.floor() - Round down
+console.log("Floor:", Math.floor(4.9)); // 4
+
+// Math.ceil() - Round up
+console.log("Ceil:", Math.ceil(4.1)); // 5
+
+// Math.abs() - Absolute value
+console.log("Abs:", Math.abs(-7)); // 7
+
+// Math.random() - Random number (0 to 1)
+console.log("Random:", Math.random());
+
+// Math.sqrt() - Square root
+console.log("Sqrt:", Math.sqrt(16)); // 4
+
+// Math.pow() - Power (base^exponent)
+console.log("Power:", Math.pow(2, 3)); // 8
+
+// Math.sin() - Sine (in radians)
+console.log("Sin:", Math.sin(Math.PI / 2)); // 1
+
+// Math.cos() - Cosine (in radians)
+console.log("Cos:", Math.cos(0)); // 1
+```
+
+### Date :
+
+```js
+// Current date and time
+let now = new Date();
+console.log("Current Date and Time:", now);
+
+// Specific date (year, month (0-based), day)
+let specificDate = new Date(2024, 8, 8); // September 8, 2024 (months are 0-indexed)
+console.log("Specific Date:", specificDate);
+
+// Specific date with time (year, month, day, hours, minutes, seconds, milliseconds)
+let specificDateTime = new Date(2024, 8, 8, 10, 30, 0);
+console.log("Specific Date and Time:", specificDateTime);
+```
+**Get Function :**
+```js
+// Get current year
+console.log("Year:", now.getFullYear());
+
+// Get current month (0-indexed, so add 1 to get the actual month)
+console.log("Month:", now.getMonth() + 1);
+
+// Get current date (day of the month)
+console.log("Date:", now.getDate());
+
+// Get current day of the week (0 = Sunday, 6 = Saturday)
+console.log("Day of Week:", now.getDay());
+
+// Get current hours, minutes, and seconds
+console.log("Hours:", now.getHours());
+console.log("Minutes:", now.getMinutes());
+console.log("Seconds:", now.getSeconds());
+```
+
+**Set Function :**
+
+```js
+// Set year to 2025
+now.setFullYear(2025);
+console.log("Updated Year:", now);
+
+// Set month to December (11 because months are 0-indexed)
+now.setMonth(11);
+console.log("Updated Month:", now);
+
+// Set date (day of the month) to 25
+now.setDate(25);
+console.log("Updated Date:", now);
+
+// Set hours, minutes, and seconds
+now.setHours(15);
+now.setMinutes(45);
+now.setSeconds(30);
+console.log("Updated Time:", now);
+```
+
+
+
+
+
+## Error Handling :
+### Compile-time Errors:
+Errors that occur before the code is executed, usually due to syntax issues.
+```js
+// Missing closing parenthesis or wrong syntax
+console.log("Hello"
+```
+###  Run-time Errors:
+Errors that occur while the code is executing.
+
+```js
+// Trying to access a property of an undefined variable
+let obj = null;
+console.log(obj.name); // Run-time error: Cannot read property 'name' of null
+```
+
+### Error Handling with try...catch
+Used to handle runtime errors in JavaScript.
+* try: Wraps code that may throw an error.
+* catch: Catches and handles the error.
+```js
+try {
+  let result = 10 / 0;  // Division by 0
+  console.log(result);
+} catch (error) {
+  console.log("Error caught:", error.message);
+}
+```
+
+### finally
+* Runs code regardless of whether an error occurs or not.
+* Ensures that certain code runs after the try...catch block.
+
+```js
+try {
+  let data = "Hello";
+  console.log(data);
+} catch (error) {
+  console.log("Error:", error.message);
+} finally {
+  console.log("This always runs.");
+}
+```
+
+### throw
+* Manually create and throw custom errors.
+* Allows defining specific error conditions.
+
+```js
+function checkNumber(num) {
+  if (num < 0) {
+    throw new Error("Negative number not allowed.");
+  }
+  console.log("Number:", num);
+}
+
+try {
+  checkNumber(-1);
+} catch (error) {
+  console.log("Error:", error.message);
+}
+```
+
+
+
+## Dom Manupulation :
 
 ```js
 

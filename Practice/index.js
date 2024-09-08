@@ -1,21 +1,25 @@
-let arr = [1,2,34,2,5,7,3,678]
-// console.log(arr)
-// arr.push("Rijoan")
-// console.log(arr)
-// arr.pop()
-// console.log(arr)
+// String Literals
+// let name = "RijoanMaruf";
+// let lastName = "Saif"
+
+// let fullName = name + lastName;
 
 
-// arr.shift()
-// console.log(arr)
+// let person = {
+//     name : "Saif",
+//     age : 21,
+//     power : 1000
+// }
+// console.log(person.age
 
+    
+// )
 
-// arr.unshift("Hello")
-// console.log(arr)
+let person = {
+    name : "Saif",
+    age : 21 ,
+    power : 1000
+}
 
-
-
-
-console.log(even)
-
+console.log(person)
 
