@@ -14,7 +14,7 @@ main{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-color: #F2F4F7;
+    background-color: #f2f4f7;
 }
 
 .container{
@@ -121,4 +121,8 @@ hr{
     margin: 0px 40px;
     color: #F2F4F7;
     border-color: #feffff;
+}
+
+#login{
+    font-weight: 600;
 }

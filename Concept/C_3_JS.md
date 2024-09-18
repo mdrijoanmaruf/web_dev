@@ -769,7 +769,6 @@ class Person {
   }
 
   get age() { return this.#age; } // Getter for private field
-
   set age(newAge) { // Setter with validation
     if (newAge > 0) this.#age = newAge;
     else console.log("Age must be positive!");
@@ -956,31 +955,540 @@ try {
 ```
 
 
+## Dom Manupulation(HTML):
+**DOM:** Document Object Model
+**BOM:** Browser Object Model
 
-## Dom Manupulation :
+### Accessing DOM Elements :
+
+#### By ID
+Accesses an element with a specific id attribute.
+```js
+// Access element with id 'myElement'
+const element = document.getElementById('myElement');
+```
+
+#### By Class Name
+Accesses elements with a specific class attribute. Returns an HTMLCollection.
+```js
+// Access all elements with class 'myClass'
+const elements = document.getElementsByClassName('myClass');
+```
+
+#### By Tag Name
+Accesses elements with a specific tag name. Returns an HTMLCollection.
+```js
+// Access all <p> elements
+const paragraphs = document.getElementsByTagName('p');
+```
+
+#### By Query Selector
+Accesses the first element that matches a CSS selector.
+```js
+// Access the first element with class 'myClass'
+const firstElement = document.querySelector('.myClass');
+```
+
+#### By Query Selector All
+Accesses all elements that match a CSS selector. Returns a NodeList.
+```js
+// Access all elements with class 'myClass'
+const allElements = document.querySelectorAll('.myClass');
+```
+
+
+### Getting/Setting Content :
+#### innerHTML
+Gets or sets the HTML content inside an element.
+```js
+// Get inner HTML content
+const content = element.innerHTML;
+
+// Set inner HTML content
+element.innerHTML = '<p>New content</p>';
+```
+#### outerHTML
+Gets or sets the entire element, including its HTML tag.
+```js
+// Get outer HTML (element + its content)
+const outer = element.outerHTML;
+
+// Set outer HTML (replaces element)
+element.outerHTML = '<div>Replaced element</div>';
+```
+#### textContent
+Gets or sets the text inside an element (ignores HTML tags).
+```js
+// Get plain text content
+const text = element.textContent;
+
+// Set plain text content (ignores HTML tags)
+element.textContent = 'New plain text content';
+```
+#### innerText
+Gets or sets the visible text inside an element (accounts for CSS styling like display: none).
+```js
+// Get visible text content
+const visibleText = element.innerText;
+
+// Set visible text content
+element.innerText = 'New visible text content';
+```
+
+
+### Add/Remove Element :
+#### createElement
+Creates a new element (but does not insert it into the DOM yet).
+```js
+// Create a new <div> element
+const newDiv = document.createElement('div');
+```
+#### appendChild
+Adds a created element as the last child of a parent element.
+```js
+// Append newDiv as the last child of parentElement
+parentElement.appendChild(newDiv);
+```
+#### insertAdjacentElement
+Inserts an element at a specific position relative to a reference element. Four possible positions:
+
+* **beforebegin** – Before the reference element.
+* **afterbegin** – As the first child of the reference element.
+* **beforeend** – As the last child of the reference element.
+* **afterend** – After the reference element
+```js
+// Insert before the reference element
+referenceElement.insertAdjacentElement('beforebegin', newDiv);
+
+// Insert as the first child
+referenceElement.insertAdjacentElement('afterbegin', newDiv);
+
+// Insert as the last child
+referenceElement.insertAdjacentElement('beforeend', newDiv);
+
+// Insert after the reference element
+referenceElement.insertAdjacentElement('afterend', newDiv);
+```
+
+#### removeChild()
+Removes a child element from a parent element. You need both the parent and the child elements.
+```js
+// Assume we have a <div> with id 'parent' and a <p> inside it
+const parent = document.getElementById('parent');
+const child = document.querySelector('p');
+
+// Remove the <p> element from the <div>
+parent.removeChild(child);
+```
+
+## Dom Manupulation(CSS):
+### style
+Allows you to get or set individual inline CSS properties.
 
 ```js
+// Set an inline style property
+element.style.color = 'red';
 
+// Get the value of a specific style property
+const color = element.style.color;
 ```
+### cssText
+Allows you to set multiple CSS properties at once or overwrite all inline styles.
+
+```js
+// Set multiple CSS styles as a string
+element.style.cssText = 'color: blue; background-color: yellow;';
+
+// Get the entire inline style string
+const styles = element.style.cssText;
+```
+
+### setAttribute
+Sets any attribute, including style for inline CSS, but usually used for other attributes.
+
+```js
+// Set inline styles using setAttribute (less preferred than .style)
+element.setAttribute('style', 'color: green; font-size: 20px;');
+```
+### className
+Gets or sets the entire class attribute of an element.
+
+```js
+// Get the class name
+const classNames = element.className;
+
+// Set or replace the class name
+element.className = 'newClass';
+```
+### classList
+Allows for easy manipulation of classes, such as adding, removing, toggling, or checking the presence of a class.
+
+* **add()** – Adds one or more classes.
+```js
+element.classList.add('class1', 'class2');
+```
+
+* **remove()** – Removes one or more classes.
+```js
+element.classList.remove('class1', 'class2');
+```
+
+* **toggle()** – Adds the class if it's not present, removes it if it is.
+```js
+element.classList.toggle('class1');
+```
+
+* **contains()** – Checks if an element has a specific class.
+```js
+const hasClass = element.classList.contains('class1');
+```
+
+
+
+
+## Event & Listener :
+### addEventListener
+Attaches an event handler to an element. You can pass either an inline (inner) function or a separate (outer) function.
+
+#### listener function
+The function that gets executed when an event occurs. We use an outer function here.
+```js
+function handleEvent(event) {
+  console.log('Event triggered');
+}
+element.addEventListener('click', handleEvent);
+```
+#### event
+The event object automatically passed to the listener function contains all the event-related information.
+```js
+function handleEvent(event) {
+  console.log(event); // Logs the event object
+}
+element.addEventListener('click', handleEvent);
+```
+#### target
+Refers to the element that triggered the event.
+```js
+function handleEvent(event) {
+  console.log('Target element:', event.target); // The element that was clicked
+}
+element.addEventListener('click', handleEvent);
+```
+#### nodeName
+Represents the tag name (node name) of the target element.
+```js
+function handleEvent(event) {
+  console.log('Node Name:', event.target.nodeName); // Logs 'DIV', 'BUTTON', etc.
+}
+element.addEventListener('click', handleEvent);
+```
+#### type
+The type of event that occurred, such as 'click', 'keydown', etc.
+```js
+function handleEvent(event) {
+  console.log('Event Type:', event.type); // Logs 'click', 'submit', etc.
+}
+element.addEventListener('click', handleEvent);
+```
+#### Prevent default action (preventDefault)
+Prevents the default action associated with the event (e.g., link navigation).
+```js
+function handleEvent(event) {
+  event.preventDefault(); // Prevents the default behavior
+  console.log('Default action prevented.');
+}
+element.addEventListener('click', handleEvent);
+```
+#### Inner Action Listener Function :
+```js
+// Add a click event listener with an inner function
+element.addEventListener('click', function() {
+  alert('Element clicked!');
+});
+```
+### removeEventListener
+Removes a previously added event listener. It must reference the same function that was used when adding the event listener.
+```js
+// Remove the event listener
+element.removeEventListener('click', handleClick);
+```
+## Performance Improvement in DOM Manipulation
+### Reflow
+Reflow occurs when the browser recalculates the layout of part or all of the page, triggered by changes in layout (e.g., modifying size, position, or structure of elements).
+
+Avoid frequent reflows as they are expensive in terms of performance. Modify DOM elements outside of the live DOM as much as possible to minimize reflows.
+```js
+// Example causing multiple reflows (inefficient)
+element.style.width = '100px';
+element.style.height = '50px';
+```
+**Improved Approch**
+```js
+// Set multiple styles in one go to avoid multiple reflows
+element.style.cssText = 'width: 100px; height: 50px;';
+```
+### Repaint
+Repaint occurs when changes are made to an element's appearance (e.g., background color, visibility) that do not affect its layout. Repaint is less expensive than reflow but still impacts performance if done frequently.
+
+```js
+// Changing only the background color triggers a repaint
+element.style.backgroundColor = 'blue';
+```
+### Document Fragment
+A DocumentFragment is a lightweight container used to group multiple DOM changes without triggering reflow/repaint until it is appended to the live DOM. This minimizes performance overhead.
+
+**Using DocumentFragment for performance improvement**
+```js
+// Create a document fragment
+const fragment = document.createDocumentFragment();
+
+// Create and append multiple elements to the fragment
+for (let i = 0; i < 1000; i++) {
+  const newElement = document.createElement('div');
+  newElement.textContent = `Item ${i}`;
+  fragment.appendChild(newElement);
+}
+
+// Append the fragment to the DOM in one go (triggers only one reflow/repaint)
+document.body.appendChild(fragment);
+```
+
+
+
+
+## Event Loop :
+![alt text](img/js_event_loop.png)
+The Event Loop is a core concept in JavaScript that handles asynchronous tasks and makes JavaScript non-blocking, even though it's single-threaded.
+
+### Synchronous Code (Sync Code)
+* This code is executed line by line, one after another.
+* Each line waits for the previous one to complete before moving on.
+
+```js
+console.log('Step 1');
+console.log('Step 2'); // Will execute only after 'Step 1' is done
+```
+### Asynchronous Code (Async Code)
+* This code allows certain tasks (like API calls or timeouts) to run in the background without blocking the main thread.
+
+```js
+console.log('Step 1');
+setTimeout(() => console.log('Step 3'), 1000); // Async, delayed execution
+console.log('Step 2'); // Executes before 'Step 3'
+```
+### Blocking Code
+* Code that prevents further execution until the current operation is complete. This usually happens in synchronous tasks.
+
+```js
+while (true) {} // Blocking code, as it never finishes
+```
+### How It Works: Call Stack, Web APIs, Callback Queue, and Event Loop
+
+#### Call Stack
+* The Call Stack is where JavaScript tracks the currently executing code.
+* Functions are pushed to the stack when invoked and popped off once completed.
+* Synchronous code runs entirely in the call stack.
+```js
+function greet() {
+  console.log('Hello!');
+}
+greet(); // 'greet' is pushed to the call stack, then removed once finished.
+```
+#### Web APIs (Browser)
+* **Web APIs** are provided by the browser (or Node.js) to handle asynchronous tasks such as `setTimeout`, AJAX requests (`fetch`), or event listeners.
+* When async code is triggered, it goes to the Web API environment, which handles it until it's ready.
+```js
+setTimeout(() => {
+  console.log('This runs after 2 seconds');
+}, 2000);
+```
+
+#### Callback Queue (Task Queue)
+* When an async task is completed (e.g., a timeout or an API call), its callback function is placed in the Callback Queue.
+* The `Callback Queue` waits for the Call `Stack` to be empty before sending callbacks for execution.
+
+#### Event Loop
+* The Event Loop constantly checks the Call Stack. If the stack is empty, it moves the first callback from the Callback Queue to the Call Stack for execution.
+* This is how JavaScript handles async tasks while continuing to execute synchronous code.
+
+**Event Loop Example :**
+```js
+console.log('Step 1'); // Sync, goes directly to the call stack
+
+setTimeout(() => {
+  console.log('Step 3'); // Async, goes to Web API, and later moves to Callback Queue
+}, 1000);
+
+console.log('Step 2'); // Sync, executed before the async code
+```
+**Execution Flow :**
+* **Step 1** is logged immediately (synchronous).
+* `setTimeout` is handed to the Web API and the callback is scheduled.
+* **Step 2** is logged (synchronous).
+* After 1000ms, the callback for **Step 3** is moved to the **Callback Queue**.
+* The Event Loop sees the Call Stack is empty and pushes **Step 3's** callback into the stack.
+
+
+
+
+
+
+
+
+
+
+
 
 ### 
 
 ```js
 
 ```
-
 ### 
 
 ```js
 
 ```
-
 ### 
 
 ```js
 
 ```
+### 
 
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
+### 
+
+```js
+
+```
 ### 
 
 ```js
