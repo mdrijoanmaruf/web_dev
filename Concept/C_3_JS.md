@@ -1329,14 +1329,102 @@ console.log('Step 2'); // Sync, executed before the async code
 * The Event Loop sees the Call Stack is empty and pushes **Step 3's** callback into the stack.
 
 
+## Promises :
+A Promise in JavaScript is an object representing the eventual completion (or failure) of an asynchronous operation and its resulting value.
+### States of a Promise:
+* **Pending**: Initial state, neither fulfilled nor rejected.
+* **Fulfilled**: The async operation completed successfully.
+* **Rejected**: The async operation failed.
+
+A promise takes an executor function with two parameters: `resolve` and `reject`.
+
+**Promise Syntax:**
+```js
+const promise = new Promise((resolve, reject) => {
+  // Do some async task
+  let success = true;
+
+  if (success) {
+    resolve('Task completed successfully'); // Fulfill the promise
+  } else {
+    reject('Task failed'); // Reject the promise
+  }
+});
+```
+### Handling Promises
+* **then()**: Used to handle the fulfilled state.
+* **catch()**: Used to handle the rejected state.
+* **finally()**: Runs after the promise is settled (either fulfilled or rejected).
+
+**Example 1: Basic Promise**
+```js
+const myPromise = new Promise((resolve, reject) => {
+  const success = true;
+  
+  setTimeout(() => {
+    if (success) {
+      resolve('Promise fulfilled!');
+    } else {
+      reject('Promise rejected!');
+    }
+  }, 1000);
+});
+
+myPromise
+  .then((message) => {
+    console.log(message); // Logs 'Promise fulfilled!' after 1 second
+  })
+  .catch((error) => {
+    console.log(error); // Logs if promise is rejected
+  })
+  .finally(() => {
+    console.log('Promise settled');
+  });
+```
+**Example 2: Chaining Promises**
+You can chain multiple .then() methods to handle sequential async tasks.
+
+```js
+const fetchData = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Data fetched'), 1000);
+});
+
+fetchData
+  .then((data) => {
+    console.log(data); // 'Data fetched'
+    return 'Processed Data';
+  })
+  .then((processedData) => {
+    console.log(processedData); // 'Processed Data'
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+**Example 3: Promise with Async Operation (e.g., API call)**
+
+```js
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = { id: 1, name: 'John' };
+      resolve(data); // Simulate API success
+    }, 2000);
+  });
+}
+
+fetchData()
+  .then((data) => {
+    console.log('Data received:', data); // Logs data after 2 seconds
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+  });
+```
 
 
 
-
-
-
-
-
+## Event
 
 
 ### 
@@ -1371,27 +1459,7 @@ console.log('Step 2'); // Sync, executed before the async code
 ```
 ### 
 
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
+```js  
 
 ```
 ### 
