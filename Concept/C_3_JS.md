@@ -1426,142 +1426,78 @@ fetchData()
 
 
 
-## Event
-
-
-### 
-
-```js
-
-```
-### 
+## Async-await & Fetch API :
+### async Functions
+An `async` function allows you to write asynchronous code in a more readable, synchronous-looking manner. The function always returns a Promise, and the `await` keyword is used inside to pause the execution until the promise is resolved or rejected.
 
 ```js
+async function fetchData() {
+  return 'Data fetched'; // Automatically wrapped in a Promise
+}
 
+fetchData().then((data) => console.log(data)); // Logs 'Data fetched'
 ```
-### 
+### await
+The `await` keyword can only be used inside `async` functions. It pauses the execution of the function until the given promise resolves (or rejects). This avoids the need for `.then()` chains.
+```js
+async function fetchData() {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('Data received'), 2000);
+  });
+
+  let result = await promise; // Waits for the promise to resolve
+  console.log(result); // Logs 'Data received' after 2 seconds
+}
+
+fetchData();
+```
+### fetch API
+The `fetch` API is used to make HTTP requests (e.g., to retrieve data from a server). It returns a **Promise** that resolves with a `Response` object. You can use `async/await` with `fetch` for easier syntax.
+
+**Basic fetch example:**
+```js
+fetch('https://api.example.com/data')
+  .then(response => response.json()) // Convert the response to JSON
+  .then(data => console.log(data))    // Handle the parsed data
+  .catch(error => console.error('Error:', error));
+```
+### Using async/await with fetch
+You can handle `fetch` requests in a cleaner way using `async/await` to avoid chaining multiple `.then()` calls.
 
 ```js
+async function getData() {
+  try {
+    const response = await fetch('https://api.example.com/data'); // Wait for the fetch to complete
+    const data = await response.json(); // Wait for the response to be parsed as JSON
+    console.log(data); // Log the data
+  } catch (error) {
+    console.error('Error:', error); // Handle any errors
+  }
+}
 
+getData();
 ```
-### 
 
+
+
+
+## Closures :
+A closure is a function that "remembers" its surrounding lexical environment even after the outer function has completed. It allows the inner function to access variables from the outer function's scope, even after the outer function has returned.
 ```js
+function outer() {
+  let count = 0; // Variable in the outer function
 
+  function inner() {
+    count++; // Inner function accesses 'count'
+    console.log(count);
+  }
+
+  return inner; // Return the inner function (closure)
+}
+
+const increment = outer(); // Create a closure
+increment(); // Logs: 1
+increment(); // Logs: 2
 ```
-### 
 
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js  
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
-### 
-
-```js
-
-```
 
