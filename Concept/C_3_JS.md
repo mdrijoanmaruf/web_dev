@@ -1257,8 +1257,9 @@ document.body.appendChild(fragment);
 
 
 ## Event Loop :
-![alt text](img/js_event_loop.png)
 The Event Loop is a core concept in JavaScript that handles asynchronous tasks and makes JavaScript non-blocking, even though it's single-threaded.
+
+![alt text](img/js_event_loop.png)
 
 ### Synchronous Code (Sync Code)
 * This code is executed line by line, one after another.
