@@ -1477,10 +1477,7 @@ async function getData() {
 
 getData();
 ```
-
-
-
-
+a
 ## Closures :
 A closure is a function that "remembers" its surrounding lexical environment even after the outer function has completed. It allows the inner function to access variables from the outer function's scope, even after the outer function has returned.
 ```js
@@ -1499,5 +1496,3 @@ const increment = outer(); // Create a closure
 increment(); // Logs: 1
 increment(); // Logs: 2
 ```
-
-
