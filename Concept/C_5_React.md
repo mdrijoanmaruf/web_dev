@@ -146,7 +146,7 @@ The children prop allows you to pass elements or JSX as children by wrapping the
 ```jsx
 function Card(props) {
   return (
-    <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+    <div>
       {/* Render the content passed as children */}
       {props.children}
     </div>
@@ -231,38 +231,7 @@ export default App;
 // The App component defines and passes handleClick to the child component as an attribute.
 ```
 
-**Explanation:**
-* Card is a reusable component.
-* Any content between the `<Card>` opening and closing tags is passed as props.children and can be rendered inside the Card.
 
-### Passing a Function as a Prop
-You can pass a function from a parent component to a child component as a prop, allowing the child to invoke the function.
-
-```jsx
-function Button(props) {
-  return (
-    <button onClick={props.handleClick}>
-      Click Me
-    </button>
-  );
-}
-
-function App() {
-  // Function to be passed as a prop
-  const showAlert = () => {
-    alert('Button clicked!');
-  };
-
-  return (
-    <div>
-      {/* Passing the showAlert function as a prop to the Button component */}
-      <Button handleClick={showAlert} />
-    </div>
-  );
-}
-
-export default App;
-```
 
 ## Hook
 ### useState Hook
