@@ -111,38 +111,173 @@ Props allow you to pass data to components, making them dynamic and reusable.
 
 ### Passing Text via Props:
 
+**Greeting.jsx**
 ```jsx
 function Greeting(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
 
-// Usage in main component
-<Greeting name="Rijaon" />
-``` 
+export default Greeting;
+```
+
+**App.jsx**
+```jsx
+import Greeting from './Greeting';
+
+function App() {
+  return (
+    <div>
+      {/* Passing name as a prop to Greeting */}
+      <Greeting name="Rijoan" />
+    </div>
+  );
+}
+
+export default App;
+```
+
+
+
+
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**App.jsx**
+```jsx
+
+```
+
+
+
+
+
+
+
+
 
 ### Passing Image via Props:
 
+**Avater.jsx**
 ```jsx
 function Avatar(props) {
   return <img src={props.src} alt="Profile" />;
 }
 
-// Usage
-<Avatar src="profile.jpg" />
-``` 
+export default Avatar;
+```
+
+**App.jsx**
+```jsx
+import Avatar from './Avatar';
+
+function App() {
+  return (
+    <div>
+      {/* Passing image URL as a prop to Avatar */}
+      <Avatar src="profile.jpg" />
+    </div>
+  );
+}
+
+export default App;
+```
 
 ### Passing Styles via Props:
 
+**StyledText.jsx**
 ```jsx
 function StyledText(props) {
   return <p style={{ color: props.color }}>{props.text}</p>;
 }
 
-// Usage
-<StyledText color="red" text="This is dynamic text!" />
-``` 
+export default StyledText;
+```
+
+**App.jsx**
+```jsx
+import StyledText from './StyledText';
+
+function App() {
+  return (
+    <div>
+      {/* Passing color and text as props to StyledText */}
+      <StyledText color="red" text="This is dynamic text!" />
+    </div>
+  );
+}
+
+export default App;
+```
+
 ### Passing Props as Children (as tag)
 The children prop allows you to pass elements or JSX as children by wrapping them within the component's opening and closing tags.
+
+
+
+**Card.jsx**
 ```jsx
 function Card(props) {
   return (
@@ -153,54 +288,69 @@ function Card(props) {
   );
 }
 
+export default Card;
+```
+
+**App.jsx**
+```jsx
+import Card from './Card';
+
 function App() {
   return (
     <div>
-      {/* Passing JSX elements as children */}
+      {/* Passing JSX elements as children to Card */}
       <Card>
-        <h1>This is a heading inside Card</h1>  {/* Passed as children */}
-        <p>This is some paragraph text inside the Card.</p>  {/* Passed as children */}
+        <h1>This is a heading inside Card</h1>
+        <p>This is some paragraph text inside the Card.</p>
       </Card>
     </div>
   );
 }
 
 export default App;
-
-// Card component receives the content between its tags as props.children.
-// App component passes h1 and p tags as children to Card.
 ```
+
+
 
 ### Passing Props as Attributes
 You can pass props as attributes to a component. This is the most common way to pass data to components, such as text, numbers, objects, or functions.
+
+
+**Profile.jsx**
 ```jsx
 function Profile(props) {
   return (
     <div>
-      {/* Accessing props as attributes */}
-      <h1>{props.name}</h1>  {/* Accessing name prop */}
-      <img src={props.imageUrl} alt="Profile" />  {/* Accessing imageUrl prop */}
+      <h1>{props.name}</h1>
+      <img src={props.imageUrl} alt="Profile" />
     </div>
   );
 }
 
+export default Profile;
+```
+
+**App.jsx**
+```jsx
+import Profile from './Profile';
+
 function App() {
   return (
     <div>
-      {/* Passing props as attributes */}
-      <Profile name="Maruf" imageUrl="profile.jpg" />  {/* Props passed as attributes */}
+      {/* Passing name and imageUrl as props to Profile */}
+      <Profile name="Maruf" imageUrl="profile.jpg" />
     </div>
   );
 }
 
 export default App;
-
-// Profile component receives name and imageUrl as attributes and renders them.
-// App component passes these values as attributes.
 ```
 
 ### Passing a Function as a Prop
 You can also pass functions as props to allow a child component to perform actions like handling events.
+
+
+**Button.jsx**
 ```jsx
 function Button(props) {
   return (
@@ -210,6 +360,13 @@ function Button(props) {
   );
 }
 
+export default Button;
+```
+
+**App.jsx**
+```jsx
+import Button from './Button';
+
 function App() {
   // Function to be passed as a prop
   const handleClick = () => {
@@ -218,24 +375,21 @@ function App() {
 
   return (
     <div>
-      {/* Passing the function as a prop */}
-      <Button handleClick={handleClick} />  {/* Function passed as prop */}
+      {/* Passing the handleClick function as a prop to Button */}
+      <Button handleClick={handleClick} />
     </div>
   );
 }
 
 export default App;
-
-// Button component receives handleClick as a prop.
-// The onClick event in the button calls the handleClick function when clicked.
-// The App component defines and passes handleClick to the child component as an attribute.
 ```
-
 
 
 ## Hook
 ### useState Hook
 The `useState` hook is used to add state to functional components in React. It allows you to manage data that changes over time within your component.
+
+**Counter.jsx**
 ```jsx
 import React, { useState } from 'react';
 
@@ -257,82 +411,344 @@ function Counter() {
 }
 
 export default Counter;
+```
+
+**App.jsx**
+```jsx
+import Counter from './Counter';
+
+function App() {
+  return (
+    <div>
+      {/* Render Counter component */}
+      <Counter />
+    </div>
+  );
+}
+
+export default App;
 ``` 
 
+
+
+
+### State Lifting (Sharing State Between Components)
+State lifting is a concept where the state is moved from a child component to a common parent component so that multiple child components can access and modify it. This helps in sharing data between sibling components.
+#### Example
+We’ll lift the state from two child components (`ChildA` and `ChildB`) to their common parent (`App`).
+
+
+**ChildA.jdx**
+```jsx
+function ChildA(props) {
+  return (
+    <div>
+      {/* Sending updated value to the parent via the handleChange function */}
+      <button onClick={() => props.onValueChange("Hello from A")}>Update from A</button>
+    </div>
+  );
+}
+
+export default ChildA;
+``` 
+
+**ChildB.jdx**
+```jsx
+function ChildB(props) {
+  return (
+    <div>
+      {/* Display the shared state value passed from the parent */}
+      <p>Value from Parent: {props.sharedValue}</p>
+    </div>
+  );
+}
+
+export default ChildB;
+``` 
+
+
+**App.jsx**
+```jsx
+import React, { useState } from 'react';
+import ChildA from './ChildA';
+import ChildB from './ChildB';
+
+function App() {
+  // Shared state between ChildA and ChildB
+  const [sharedValue, setSharedValue] = useState("");
+
+  // Function to update shared state from ChildA
+  const handleValueChange = (newValue) => {
+    setSharedValue(newValue);
+  };
+
+  return (
+    <div>
+      {/* Passing the state change function to ChildA */}
+      <ChildA onValueChange={handleValueChange} />
+      
+      {/* Passing the shared state to ChildB */}
+      <ChildB sharedValue={sharedValue} />
+    </div>
+  );
+}
+
+export default App;
+``` 
+* **App.jsx** holds the state sharedValue.
+* **ChildA** can modify this state via the onValueChange function.
+* **ChildB** receives the updated state value as a prop and displays it.
+
+
 ### 
+
+**.jdx**
 ```jsx
 
 ``` 
 
-### 
+
+**App.jsx**
 ```jsx
 
 ``` 
-
 ### 
-```jsx
 
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
-```jsx
-
-``` 
-
-### 
+**.jdx**
 ```jsx
 
 ``` 
 
 
+**App.jsx**
+```jsx
 
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
+### 
+
+**.jdx**
+```jsx
+
+``` 
+
+
+**App.jsx**
+```jsx
+
+``` 
