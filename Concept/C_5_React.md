@@ -628,42 +628,160 @@ export default FocusBlurEvent;
 
  
 ### useEffect Hook
+The useEffect hook in React allows you to perform side effects in function components. These side effects include data fetching, setting up subscriptions, or manually changing the DOM. It runs after every render by default, but you can control it with dependencies.
 
-**.jdx**
+**1. LoggerComponent (Logging on render)**
+Logs a message to the console whenever the component renders or re-renders.
 ```jsx
+import { useEffect } from 'react';
 
+function LoggerComponent() {
+  useEffect(() => {
+    console.log("Component has rendered");
+
+    // Cleanup (optional, runs when the component unmounts or before re-running)
+    return () => {
+      console.log("Component is unmounting");
+    };
+  });
+
+  return <div>Check the console for logs.</div>;
+}
+
+export default LoggerComponent;
 ``` 
 
 
-**App.jsx**
+**2. TimerComponent (Setting up a timer)**
+
+A component that tracks how many seconds have passed since it was mounted.
+
+
 ```jsx
+import { useState, useEffect } from 'react';
 
+function TimerComponent() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+
+    // Cleanup the timer when the component unmounts
+    return () => clearInterval(interval);
+  }, []);  // Empty dependency array means this runs only once on mount
+
+  return <div>Timer: {seconds} seconds</div>;
+}
+
+export default TimerComponent;
 ``` 
-### 
 
-**.jdx**
+**3. ResizeComponent (Handling window resize)**
+
+This component tracks and displays the window size.
 ```jsx
+import { useState, useEffect } from 'react';
 
+function ResizeComponent() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener when component unmounts
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);  // Runs once on mount
+
+  return <div>Window Width: {windowWidth}px</div>;
+}
+
+export default ResizeComponent;
 ``` 
 
 
-**App.jsx**
+**4. DataFetcher (Fetching data from an API)**
+
+A component that fetches data from an API when it mounts.
 ```jsx
+import { useState, useEffect } from 'react';
 
+function DataFetcher() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      });
+
+    // No cleanup needed here
+  }, []);  // Empty array means it fetches only on mount
+
+  return (
+    <div>
+      {loading ? <p>Loading...</p> : <p>{data.title}</p>}
+    </div>
+  );
+}
+
+export default DataFetcher;
 ``` 
-### 
 
-**.jdx**
+
+**5. MultiEffectComponent (Multiple useEffect hooks)**
+
+A component with multiple useEffect hooks to demonstrate different side effects.
 ```jsx
+import { useState, useEffect } from 'react';
 
+function MultiEffectComponent() {
+  const [count, setCount] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  // Effect to increment count on button click
+  useEffect(() => {
+    console.log("Count updated:", count);
+  }, [count]);  // Runs when count changes
+
+  // Effect to track time since component mounted
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);  // Runs only once after initial render
+
+  return (
+    <div>
+      <p>Seconds passed: {seconds}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment Count ({count})
+      </button>
+    </div>
+  );
+}
+
+export default MultiEffectComponent;
 ``` 
 
+* **LoggerComponent**: Logs whenever the component renders or unmounts.
+* **TimerComponent**: Implements a timer using setInterval.
+* **ResizeComponent**: Updates the UI when the window is resized.
+* **DataFetcher**: Fetches data from an API on component mount.
+* **MultiEffectComponent**: Demonstrates multiple effects in the same component.
 
-**App.jsx**
-```jsx
 
-``` 
-### 
+### useContex Hook :
 
 **.jdx**
 ```jsx
