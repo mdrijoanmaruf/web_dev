@@ -630,6 +630,50 @@ export default FocusBlurEvent;
 ### useEffect Hook
 The useEffect hook in React allows you to perform side effects in function components. These side effects include data fetching, setting up subscriptions, or manually changing the DOM. It runs after every render by default, but you can control it with dependencies.
 
+
+#### All Variation :
+
+**1. Runs on every render:** This effect runs every time the component renders or re-renders.
+```jsx
+useEffect(() => {
+  console.log("Count Value : " + count);
+});
+```
+
+**2. Runs only on the first render:** By providing an empty dependency array `[]`, the effect runs only once after the first render.
+```jsx
+useEffect(() => {
+  console.log("Runs only 1st render");
+}, []);
+```
+
+**3. Runs when a specific value changes:** This effect runs every time the specified dependency `(count)` changes.
+```jsx
+useEffect(() => {
+  console.log("I will run every time when count changes: " + count);
+}, [count]);
+```
+
+**4. Multiple dependencies:** The effect runs whenever any of the listed dependencies `(count, total)` change.
+```jsx
+useEffect(() => {
+  console.log("I will run every time when count or total changes");
+}, [count, total]);
+```
+
+**5. Effect with cleanup function:** The cleanup function is called before the component unmounts or before the effect is re-run (due to a dependency change).
+```jsx
+useEffect(() => {
+  console.log("Count is updated");
+
+  return () => {
+    console.log("Count is unmounted");
+  };
+}, [count]);
+```
+
+
+#### Examples : 
 **1. LoggerComponent (Logging on render)**
 Logs a message to the console whenever the component renders or re-renders.
 ```jsx
@@ -782,59 +826,110 @@ export default MultiEffectComponent;
 
 
 ### useContex Hook :
+The `useContext` hook is used to access values provided by a Context in the component tree without passing props manually at every level. Here's a breakdown of how it works with an example:
 
-**.jdx**
+#### Steps to use useContext :
+**1. Create a Context:** This step sets up a context object that will hold the shared state or data.
 ```jsx
-
+const userContext = createContext();
 ``` 
 
+**2. Wrap components with the Provider:** The Provider component allows you to pass down data to all child components within its tree.
 
+```jsx
+<userContext.Provider value={user}>
+  <ChildA />
+</userContext.Provider>
+``` 
+
+**3. Provide a value:** The value prop in the Provider is what you want to share across your components.
+```jsx
+const [user, setUser] = useState({name: "Md Rijoan Maruf"});
+``` 
+
+**4. Access the context using useContext:** Any component that needs access to the provided data can use the `useContext` hook.
+```jsx
+const user = useContext(userContext);  // Access the user context
+``` 
+
+#### Full Example : 
 **App.jsx**
 ```jsx
+import { useState, createContext } from 'react';  // Import createContext
 
+// Step 1: Create the Context
+const userContext = createContext();
+
+function App() {
+  // Step 3: Define and set the shared value
+  const [user, setUser] = useState({ name: "Md Rijoan Maruf" });
+
+  return (
+    <div>
+      {/* Step 2: Wrap components with the Provider and pass value */}
+      <userContext.Provider value={user}>
+        <ChildA />  
+      </userContext.Provider>
+    </div>
+  );
+}
+
+export default App;
+export { userContext };  // Export context to be used in child components
 ``` 
-### 
-
-**.jdx**
+**ChildA.jsx**
 ```jsx
+import React from 'react';
+import ChildB from './ChildB';
 
+function ChildA() {
+  return (
+    <div>
+      ChildA
+      <ChildB />
+    </div>
+  );
+}
+
+export default ChildA;
 ``` 
 
-
-**App.jsx**
+**ChildB.jdx**
 ```jsx
+import React from 'react';
+import ChildC from './ChildC';
 
+function ChildB() {
+  return (
+    <div>
+      ChildB
+      <ChildC />
+    </div>
+  );
+}
+
+export default ChildB;
 ``` 
-### 
 
-**.jdx**
+
+**ChildC.jsx**
 ```jsx
+import React, { useContext } from 'react';  // Import useContext
+import { userContext } from '../App';  // Import the created context
 
+function ChildC() {
+  // Step 4: Use the useContext hook to access the shared value
+  const user = useContext(userContext);
+
+  return (
+    <div>Name: {user.name}</div>  // Display the shared value
+  );
+}
+
+export default ChildC;
 ``` 
+In this example, `ChildC` is deeply nested but can still access the `user` value via `useContext` without needing to pass it through each level of the component tree manually.
 
-
-**App.jsx**
-```jsx
-
-``` 
-### 
-
-**.jdx**
-```jsx
-
-``` 
-
-
-**App.jsx**
-```jsx
-
-``` 
-### 
-
-**.jdx**
-```jsx
-
-``` 
 
 
 **App.jsx**
