@@ -931,29 +931,111 @@ export default ChildC;
 In this example, `ChildC` is deeply nested but can still access the `user` value via `useContext` without needing to pass it through each level of the component tree manually.
 
 
+#### Example: Theme Switcher with useContext
+This example demonstrates how to toggle between light and dark themes using useContext.
 
-**App.jsx**
+
+**Step 1: Create a Context and Provider**
 ```jsx
+// ThemeContext.jsx
+import { createContext, useState } from 'react';
 
+// Step 1: Create a Context
+const ThemeContext = createContext();
+
+function ThemeProvider({ children }) {
+  // Step 2: Define shared state and function
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    // Step 3: Provide both value and function
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export { ThemeContext, ThemeProvider };
 ``` 
-### 
 
-**.jdx**
+
+**Step 2: Use the useContext Hook to Access Theme and Toggle Function**
 ```jsx
+// App.jsx
+import React from 'react';
+import { ThemeProvider } from './ThemeContext';
+import Header from './Header';
+import ThemeSwitcher from './ThemeSwitcher';
 
+function App() {
+  return (
+    <ThemeProvider>
+      {/* Step 4: Wrap components with ThemeProvider */}
+      <div>
+        <Header />
+        <ThemeSwitcher />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
 ``` 
 
 
-**App.jsx**
+**Step 3: Create Components to Consume Context**
+Header Component : The Header component changes its background color based on the current theme.
 ```jsx
+// Header.jsx
+import React, { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
+function Header() {
+  // Step 5: Use useContext to get the current theme
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <header style={{ backgroundColor: theme === 'light' ? '#f0f0f0' : '#333', color: theme === 'light' ? '#000' : '#fff', padding: '1em' }}>
+      <h1>Welcome to the Theme Switcher</h1>
+    </header>
+  );
+}
+
+export default Header;
 ``` 
-### 
+ThemeSwitcher Component :The `ThemeSwitcher` component provides a button to toggle between light and dark themes.
 
-**.jdx**
 ```jsx
+// ThemeSwitcher.jsx
+import React, { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
 
+function ThemeSwitcher() {
+  // Step 6: Use useContext to get the toggleTheme function
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <button onClick={toggleTheme} style={{ padding: '1em', margin: '1em' }}>
+      Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+    </button>
+  );
+}
+
+export default ThemeSwitcher;
 ``` 
+
+
+
+
+
+
+
+
+
 
 
 **App.jsx**
