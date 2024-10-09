@@ -1036,81 +1036,508 @@ export default ThemeSwitcher;
 
 
 
+### React Routing
+
+**Install**
+```
+npm install react-router-dom
+``` 
+### React Router Setup
+React Router is a library that enables navigation between different pages in a React app. The core components of React Router are:
+
+* **BrowserRouter**: A wrapper for enabling the router.
+* **Routes**: A collection of route definitions.
+* **Route**: Defines a single route and the component to render when the path matches.
+
 
 
 **App.jsx**
 ```jsx
+import { useState } from 'react';  // Import useState for state
+import './App.css';  // Import CSS
 
+// Import React Router components
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Home from './Components/Home';  // Import Home component
+import About from './Components/About';  // Import About component
+import Contact from './Components/Contact';  // Import Contact component
+import Navbar from './Components/Navbar';  // Import Navbar
+
+// Create routes
+const router = createBrowserRouter([
+  {
+    path: "/",  // Home route
+    element: 
+      <div>
+        <Navbar/>  {/* Navbar */}
+        <Home/>  {/* Home component */}
+      </div>
+  },
+  {
+    path: "/about",  // About route
+    element: 
+      <div>
+        <Navbar/>
+        <About/>
+      </div>
+  },
+  {
+    path: "/contact",  // Contact route
+    element: 
+      <div>
+        <Navbar/>
+        <Contact/>
+      </div>
+  }
+]);
+
+function App() {
+  const [count, setCount] = useState(0);  // State example
+
+  return (
+    <>
+      <RouterProvider router={router}/>  {/* Provide router */}
+    </>
+  );
+}
+
+export default App;
 ``` 
-### 
 
+**Home.jdx**
+```jsx
+// Home.js
+import React from 'react';
+
+// Simple Home Component
+function Home() {
+  return <h1>Welcome to the Home Page</h1>;
+}
+
+export default Home;
+``` 
+
+
+**About.jsx**
+```jsx
+// About.js
+import React from 'react';
+
+// Simple About Component
+function About() {
+  return <h1>About Us</h1>;
+}
+
+export default About;
+``` 
+
+
+**Contact.jdx**
+```jsx
+// Contact.js
+import React from 'react';
+
+// Simple Contact Component
+function Contact() {
+  return <h1>Contact Us</h1>;
+}
+
+export default Contact;
+``` 
+
+
+**Navbar.jsx**
+```jsx
+import React from 'react';
+import { Link } from 'react-router-dom';  // Import Link for navigation
+import './Navbar.css';  // Import CSS for Navbar styles
+
+const Navbar = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to='/'>Home</Link>  {/* Link to Home page */}
+        </li>
+        <li>
+          <Link to='/about'>About</Link>  {/* Link to About page */}
+        </li>
+        <li>
+          <Link to='/contact'>Contact</Link>  {/* Link to Contact page */}
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Navbar;
+``` 
+
+#### React Router's NavLink with isActive
+NavLink is similar to Link but provides extra styling options for active links. It automatically adds an active class to the link that corresponds to the current URL. You can customize the active link styles or use the isActive function to apply custom logic.
 **.jdx**
 ```jsx
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './Navbar.css';
 
+const Navbar = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          {/* NavLink with isActive to apply custom style */}
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              fontWeight: isActive ? 'bold' : 'normal',
+              color: isActive ? 'blue' : 'black'
+            })}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/about"
+            style={({ isActive }) => ({
+              fontWeight: isActive ? 'bold' : 'normal',
+              color: isActive ? 'blue' : 'black'
+            })}
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/contact"
+            style={({ isActive }) => ({
+              fontWeight: isActive ? 'bold' : 'normal',
+              color: isActive ? 'blue' : 'black'
+            })}
+          >
+            Contact
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Navbar;
 ``` 
+
+### useParams Hook in React Router
+The useParams hook allows you to access URL parameters in a component. This is useful when building dynamic routes, where the component's behavior depends on the URL's values.
 
 
 **App.jsx**
 ```jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import User from './User';
 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Route with a dynamic parameter :id */}
+        <Route path="/user/:id" element={<User />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
 ``` 
-### 
 
-**.jdx**
+**User.jdx**
 ```jsx
+import React from 'react';
+import { useParams } from 'react-router-dom';  // Import useParams hook
 
+const User = () => {
+  const { id } = useParams();  // Get the URL parameter 'id'
+
+  return (
+    <div>
+      <h1>User ID: {id}</h1>  {/* Display the dynamic parameter */}
+    </div>
+  );
+};
+
+export default User;
 ``` 
 
+### useNavigate Hook in React Router
+The useNavigate hook allows you to programmatically navigate to different routes within your React application. It provides a simple way to redirect users without the need for `<Link>` or `<NavLink>` components.
+
+**App.jdx**
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Route for Home page */}
+        <Route path="/" element={<Home />} />
+        {/* Route for About page */}
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+``` 
+
+
+**Home.jsx**
+```jsx
+import React from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
+
+const Home = () => {
+  const navigate = useNavigate();  // Initialize useNavigate
+
+  const goToAbout = () => {
+    navigate('/about');  // Navigate to the About page
+  };
+
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <button onClick={goToAbout}>Go to About</button>  {/* Button to trigger navigation */}
+    </div>
+  );
+};
+
+export default Home;
+``` 
+
+### Nested Routing in React Router
+Nested routing in React Router allows you to structure your routes in a hierarchical manner, enabling a parent route to render child components based on the URL. This is useful for creating layouts or dashboards where different parts of the page change while keeping a common structure (e.g., a sidebar).
 
 **App.jsx**
 ```jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Dashboard from './Dashboard';
 
-``` 
-### 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Main home route */}
+        <Route path="/" element={<Home />} />
+        {/* Parent route with nested routes */}
+        <Route path="/dashboard/*" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+}
 
-**.jdx**
+export default App;
+```
+
+**Dashboard.jsx**
 ```jsx
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';  // Outlet for rendering nested routes
 
-``` 
+const Dashboard = () => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {/* Links for navigating between nested routes */}
+      <nav>
+        <Link to="profile">Profile</Link> | 
+        <Link to="settings">Settings</Link>
+      </nav>
+      
+      {/* Outlet renders the child routes */}
+      <Outlet />
+    </div>
+  );
+};
+
+export default Dashboard;
+```
+
+**Profile.jsx**
+```jsx
+import React from 'react';
+
+const Profile = () => {
+  return <h2>User Profile</h2>;
+};
+
+export default Profile;
+```
+
+**Settings.jsx**
+```jsx
+import React from 'react';
+
+const Settings = () => {
+  return <h2>Settings</h2>;
+};
+
+export default Settings;
+```
 
 
+
+
+### 404 Page Handling in React Router
+In React Router, handling a 404 Page Not Found scenario is straightforward. You can create a catch-all route that matches any undefined path and renders a custom 404 component when no other routes match.
 **App.jsx**
 ```jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import NotFound from './NotFound';  // Import the 404 component
 
-``` 
-### 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />        {/* Home route */}
+        <Route path="/about" element={<About />} />  {/* About route */}
+        <Route path="/contact" element={<Contact />} /> {/* Contact route */}
+        
+        {/* Catch-all route for undefined paths (404) */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+}
 
-**.jdx**
+export default App;
+```
+
+**NotFound.jsx**
+```jsx
+import React from 'react';
+
+const NotFound = () => {
+  return (
+    <div>
+      <h1>404 - Page Not Found</h1>
+      <p>The page you're looking for does not exist.</p>
+    </div>
+  );
+};
+
+export default NotFound;
+```
+
+
+
+
+
+
+
+**.jsx**
 ```jsx
 
-``` 
+```
 
-
-**App.jsx**
+**.jsx**
 ```jsx
 
-``` 
-### 
+```
 
-**.jdx**
+**.jsx**
 ```jsx
 
-``` 
+```
 
-
-**App.jsx**
+**.jsx**
 ```jsx
 
-``` 
-### 
+```
 
-**.jdx**
+**.jsx**
 ```jsx
 
-``` 
+```
 
-
-**App.jsx**
+**.jsx**
 ```jsx
 
-``` 
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+**.jsx**
+```jsx
+
+```
+
+
+
