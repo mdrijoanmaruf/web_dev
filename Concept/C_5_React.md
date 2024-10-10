@@ -304,6 +304,169 @@ export default App;
 ```
 
 
+
+## Event Handling :
+Event handling in React is similar to handling events in plain JavaScript but with some key differences:
+**1. onClick Event**
+```jsx
+function ButtonClick() {
+  const handleClick = () => {
+    alert("Button was clicked!");
+  };
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+export default ButtonClick;
+``` 
+
+
+**2. onChange Event**
+```jsx
+function InputChange() {
+  const handleChange = (event) => {
+    console.log("Input value:", event.target.value);
+  };
+
+  return <input type="text" onChange={handleChange} placeholder="Type something" />;
+}
+
+export default InputChange;
+``` 
+
+
+**3. onSubmit Event**
+```jsx
+function FormSubmit() {
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevents page reload
+    alert("Form submitted!");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Enter name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default FormSubmit;
+``` 
+
+
+**4. onMouseEnter / onMouseLeave Event**
+These events are triggered when the mouse enters or leaves an element.
+
+
+```jsx
+function MouseEvents() {
+  const handleMouseEnter = () => {
+    console.log("Mouse entered!");
+  };
+
+  const handleMouseLeave = () => {
+    console.log("Mouse left!");
+  };
+
+  return (
+    <div 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave} 
+      style={{ padding: '20px', border: '1px solid black' }}>
+      Hover over me
+    </div>
+  );
+}
+
+export default MouseEvents;
+``` 
+
+
+**5. onFocus / onBlur Event**
+These events are triggered when an input field gains or loses focus.
+```jsx
+function FocusBlurEvent() {
+  const handleFocus = () => {
+    console.log("Input is focused");
+  };
+
+  const handleBlur = () => {
+    console.log("Input lost focus");
+  };
+
+  return (
+    <input 
+      type="text" 
+      onFocus={handleFocus} 
+      onBlur={handleBlur} 
+      placeholder="Focus on me" 
+    />
+  );
+}
+
+export default FocusBlurEvent;
+``` 
+
+
+
+
+## Conditional Rendering
+Conditional rendering in React allows you to display different UI elements based on certain conditions. This can be achieved using JavaScript expressions like if, ternary operators, or logical operators.
+
+**Login.jdx**
+```jsx
+import React from 'react';
+
+function Login({ setLoggedIn }) {
+  return (
+    <div>
+        {/* Pass the function to onClick */}
+        <button onClick={() => setLoggedIn(true)}>Log In</button>
+    </div>
+  );
+}
+
+export default Login;
+``` 
+**Logout.jdx**
+```jsx
+import React from 'react';
+
+function Logout({ setLoggedIn }) {
+  return (
+    <div>
+        {/* Pass the function to onClick */}
+        <button onClick={() => setLoggedIn(false)}>Log Out</button>
+    </div>
+  );
+}
+
+export default Logout;
+``` 
+
+
+**App.jsx**
+```jsx
+import React from 'react';
+
+function Logout({ setLoggedIn }) {
+  return (
+    <div>
+        {/* Pass the function to onClick */}
+        <button onClick={() => setLoggedIn(false)}>Log Out</button>
+    </div>
+  );
+}
+
+export default Logout;
+``` 
+
+
+
+
+
+
 ## Hook
 ### useState Hook
 The `useState` hook is used to add state to functional components in React. It allows you to manage data that changes over time within your component.
@@ -469,161 +632,6 @@ function App() {
 export default App;
 ``` 
 
-
-
-
-### Conditional Rendering
-Conditional rendering in React allows you to display different UI elements based on certain conditions. This can be achieved using JavaScript expressions like if, ternary operators, or logical operators.
-
-**Login.jdx**
-```jsx
-import React from 'react';
-
-function Login({ setLoggedIn }) {
-  return (
-    <div>
-        {/* Pass the function to onClick */}
-        <button onClick={() => setLoggedIn(true)}>Log In</button>
-    </div>
-  );
-}
-
-export default Login;
-``` 
-**Logout.jdx**
-```jsx
-import React from 'react';
-
-function Logout({ setLoggedIn }) {
-  return (
-    <div>
-        {/* Pass the function to onClick */}
-        <button onClick={() => setLoggedIn(false)}>Log Out</button>
-    </div>
-  );
-}
-
-export default Logout;
-``` 
-
-
-**App.jsx**
-```jsx
-import React from 'react';
-
-function Logout({ setLoggedIn }) {
-  return (
-    <div>
-        {/* Pass the function to onClick */}
-        <button onClick={() => setLoggedIn(false)}>Log Out</button>
-    </div>
-  );
-}
-
-export default Logout;
-``` 
-## Event Handling :
-Event handling in React is similar to handling events in plain JavaScript but with some key differences:
-**1. onClick Event**
-```jsx
-function ButtonClick() {
-  const handleClick = () => {
-    alert("Button was clicked!");
-  };
-
-  return <button onClick={handleClick}>Click Me</button>;
-}
-
-export default ButtonClick;
-``` 
-
-
-**2. onChange Event**
-```jsx
-function InputChange() {
-  const handleChange = (event) => {
-    console.log("Input value:", event.target.value);
-  };
-
-  return <input type="text" onChange={handleChange} placeholder="Type something" />;
-}
-
-export default InputChange;
-``` 
-
-
-**3. onSubmit Event**
-```jsx
-function FormSubmit() {
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevents page reload
-    alert("Form submitted!");
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="Enter name" />
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-
-export default FormSubmit;
-``` 
-
-
-**4. onMouseEnter / onMouseLeave Event**
-These events are triggered when the mouse enters or leaves an element.
-
-
-```jsx
-function MouseEvents() {
-  const handleMouseEnter = () => {
-    console.log("Mouse entered!");
-  };
-
-  const handleMouseLeave = () => {
-    console.log("Mouse left!");
-  };
-
-  return (
-    <div 
-      onMouseEnter={handleMouseEnter} 
-      onMouseLeave={handleMouseLeave} 
-      style={{ padding: '20px', border: '1px solid black' }}>
-      Hover over me
-    </div>
-  );
-}
-
-export default MouseEvents;
-``` 
-
-
-**5. onFocus / onBlur Event**
-These events are triggered when an input field gains or loses focus.
-```jsx
-function FocusBlurEvent() {
-  const handleFocus = () => {
-    console.log("Input is focused");
-  };
-
-  const handleBlur = () => {
-    console.log("Input lost focus");
-  };
-
-  return (
-    <input 
-      type="text" 
-      onFocus={handleFocus} 
-      onBlur={handleBlur} 
-      placeholder="Focus on me" 
-    />
-  );
-}
-
-export default FocusBlurEvent;
-``` 
 
 
  
