@@ -1,6 +1,7 @@
 # React JS
 React is a JavaScript library for building user interfaces. It uses components and a virtual DOM to create efficient and reusable UI code.
 
+## Installation 
 #### Step 1 : Install React Using Vite :
 
     npm create vite@latest
