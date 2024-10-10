@@ -1763,243 +1763,302 @@ function App() {
 export default App;
 ```
 
-#### 
+### useRef Hook
+The `useRef` hook in React allows you to persist values between renders and directly access DOM elements. Unlike `useState`, changes to a `useRef` value do not trigger a re-render.
 
+#### 1. Basic Syntax of useRef
 ```jsx
+const myRef = useRef(initialValue);
+```
+* `myRef` is an object with a `.current` property that holds the value.
+* It persists across renders and doesn't trigger a re-render when updated.
+#### 2. Use Cases for useRef
+* Accessing DOM elements.
+* Storing mutable values that don't cause re-renders.
+* Holding reference to timers or intervals.
 
+#### Example 1 : Stop Watch
+```jsx
+import React, { useState, useRef } from 'react';
+
+function Stopwatch() {
+  const [time, setTime] = useState(0);  // Time state to track the elapsed time
+  const [isRunning, setIsRunning] = useState(false);  // To track whether the stopwatch is running
+  const timerRef = useRef(null);  // useRef to hold the timer ID
+
+  // Function to start the stopwatch
+  const start = () => {
+    if (!isRunning) {
+      setIsRunning(true);  // Set running state to true
+      timerRef.current = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);  // Increment time by 1 every second
+      }, 1000);
+    }
+  };
+
+  // Function to stop the stopwatch
+  const stop = () => {
+    clearInterval(timerRef.current);  // Clear the timer
+    setIsRunning(false);  // Set running state to false
+  };
+
+  // Function to reset the stopwatch
+  const reset = () => {
+    clearInterval(timerRef.current);  // Clear the timer
+    setIsRunning(false);  // Set running state to false
+    setTime(0);  // Reset time to 0
+  };
+
+  return (
+    <div>
+      <h1>Stopwatch: {time}s</h1>
+      <div>
+        <button onClick={start}>Start</button>
+        <button onClick={stop}>Stop</button>
+        <button onClick={reset}>Reset</button>
+      </div>
+    </div>
+  );
+}
+
+export default Stopwatch;
 ```
 
-#### 
+#### Example 2 : Switch Color
 
 ```jsx
+import React, { useState, useRef } from 'react';
 
+function ColorSwitcher() {
+  const [color, setColor] = useState('white');  // Initial color state
+  const colorRef = useRef('white');  // useRef to track the current color without re-render
+
+  // Array of colors to switch between
+  const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+
+  // Function to switch color
+  const switchColor = () => {
+    const nextColor = colors[Math.floor(Math.random() * colors.length)];  // Pick a random color
+    colorRef.current = nextColor;  // Update the ref with the new color
+    setColor(nextColor);  // Update the state with the new color
+  };
+
+  return (
+    <div style={{ backgroundColor: color, height: '200px', textAlign: 'center' }}>
+      <h1>Current Color: {colorRef.current}</h1>
+      <button onClick={switchColor}>Switch Color</button>
+    </div>
+  );
+}
+
+export default ColorSwitcher;
 ```
 
-#### 
-
+### useMemo Hook 
+The useMemo hook in React is used to memoize a value — meaning it will only recompute the result when its dependencies change. This can improve performance by preventing expensive calculations from running on every render.
 ```jsx
-
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
+* useMemo(callback, dependencies):
+  * callback: A function that returns a value to be memoized.
+  * dependencies: An array of dependencies that trigger recalculating the memoized value if any of them change.
 
-#### 
+#### When to Use useMemo:
+* For expensive calculations: Use useMemo to prevent re-running expensive functions unless needed.
+* When you want to avoid unnecessary recalculations of a value.
+* If you want to optimize rendering performance for a component.
 
-```jsx
 
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
+#### Example 1: Basic Use of useMemo
+Here’s an example where a calculation is only performed when its dependencies change:
 
 ```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-#### 
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
-```
-
-**.jsx**
-```jsx
-
+import { useState, useMemo } from 'react'  // Importing hooks
+import './App.css'  // Importing CSS
+
+function App() {
+  const [count, setCount] = useState(0);   // State for count
+  const [input, setInput] = useState(0);   // State for input
+
+  // Simulates a heavy task (loops 1 billion times)
+  function expensiveTask(num) {
+    console.log("Inside Expensive Task");
+    for(let i = 0; i <= 1000000000; i++) {}
+    return num * 2;  // Doubles the input
+  }
+  
+  // Memoizes result, recalculates only if input changes
+  let doubleValue = useMemo(() => expensiveTask(input), [input]);
+
+  return (
+    <div>
+      {/* Button to increment count */}
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+
+      {/* Display count */}
+      <div>
+        Count: {count}
+      </div>
+
+      {/* Input for user number */}
+      <input 
+        type='number'
+        placeholder='enter number'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}  // Update input state
+      />
+
+      {/* Display double value */}
+      <div>
+        Double: {doubleValue}
+      </div>
+    </div>
+  )
+}
+
+export default App
 ```
 
 
+#### Example: Preventing Unnecessary Re-Renders in Child Components
+In this example, the child component should only re-render when specific props change.
 
+```jsx
+// App.jsx
+import React, { useState, useMemo } from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  const [input, setInput] = useState('');
+
+  // Memoize the data passed to ChildComponent so it only updates when `count` changes
+  const memoizedData = useMemo(() => {
+    return { number: count };
+  }, [count]);  // Only recompute when `count` changes
+
+  return (
+    <div>
+      <h1>Parent Component</h1>
+      <button onClick={() => setCount(count + 1)}>Increment Count</button>
+      <input
+        type="text"
+        placeholder="Type something..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      {/* Pass memoizedData to ChildComponent */}
+      <ChildComponent data={memoizedData} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+
+
+```jsx
+// Child Component
+import React from 'react';
+
+function ChildComponent({ data }) {
+  console.log("Child component re-rendered!");
+
+  return (
+    <div>
+      <h2>Child Component</h2>
+      <p>Number from parent: {data.number}</p>
+    </div>
+  );
+}
+
+export default React.memo(ChildComponent);  // Memoize the child component
+```
+### useCallback Hook 
+The `useCallback` hook in React is used to memoize functions, which helps prevent unnecessary re-creations of functions during re-renders. This is especially useful when passing functions as props to child components to prevent triggering unnecessary re-renders in those children
+
+```jsx
+const memoizedCallback = useCallback(() => {
+  // Function logic
+}, [dependencies]);
+```
+* `useCallback(callback, dependencies):`
+  * callback: The function that you want to memoize.
+  * dependencies: An array of dependencies that trigger re-creation of the memoized function if any of them change.
+#### When to Use useCallback:
+* To prevent re-creating functions on every render.
+* When passing functions as props to child components to avoid unnecessary re-renders.
+* Useful for performance optimization in components that rely on expensive or frequently called functions.
+
+#### Example 1: Basic use of useCallback
+```jsx
+import React, { useState, useCallback } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
+
+  // Memoized increment function: only changes if `count` changes
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);  // Function to increment count
+  }, [count]);  // Only re-create the function if `count` changes
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={increment}>Increment</button>
+
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Type something..."
+      />
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+#### Example 2: Passing Memoized Function to a Child Component
+
+```jsx
+// App.jsx
+import React, { useState, useCallback } from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  
+  // Memoized callback to pass to the child
+  const handleClick = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []);  // This function never changes as it has no dependencies
+
+  return (
+    <div>
+      <h1>Parent Count: {count}</h1>
+      <ChildComponent onClick={handleClick} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+```jsx
+// Child Component
+import React from 'react';
+
+function ChildComponent({ onClick }) {
+  console.log("Child re-rendered!");
+
+  return (
+    <button onClick={onClick}>Increment Parent Count</button>
+  );
+}
+
+export default React.memo(ChildComponent);
+```
