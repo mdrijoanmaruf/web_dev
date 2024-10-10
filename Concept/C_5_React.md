@@ -1448,21 +1448,183 @@ export default NotFound;
 
 
 
-
-**.jsx**
+### React Hook Form 
+#### 1. Form Creation
+React Hook Form allows you to create forms with less code, improved performance, and better handling of form state.
 ```jsx
+import { useForm } from 'react-hook-form';
+
+function MyForm() {
+  // useForm provides form utilities
+  const { register, handleSubmit } = useForm();
+
+  // onSubmit will be called when form is submitted
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("name")} placeholder="Name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
 
 ```
+#### 2. Handle Form Submission
+React Hook Form uses handleSubmit to handle form submissions and gather the form data.
 
-**.jsx**
 ```jsx
+const { handleSubmit } = useForm();
 
+// onSubmit function to handle data
+const onSubmit = (data) => {
+  console.log("Form data:", data);
+};
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  {/* form fields here */}
+</form>
+```
+#### 3. Registering Inputs
+The `register` function binds inputs to the form. It tracks changes and maintains the form state.
+
+```jsx
+<input {...register("email")} placeholder="Email" />
+```
+#### 4. Validation Application
+You can easily apply validation using register by providing validation rules.
+
+```jsx
+<input
+  {...register("password", { required: true, minLength: 6 })}
+  placeholder="Password"
+/>
+```
+#### 5. Error Handling
+React Hook Form tracks errors, and you can use formState.errors to display error messages.
+
+```jsx
+const { register, handleSubmit, formState: { errors } } = useForm();
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  <input
+    {...register("username", { required: "Username is required" })}
+  />
+  {errors.username && <p>{errors.username.message}</p>}
+  <button type="submit">Submit</button>
+</form>
+```
+#### 6. Styling Error
+You can apply conditional styling when there’s an error.
+
+```jsx
+<input
+  {...register("email", { required: true })}
+  style={{ borderColor: errors.email ? 'red' : 'black' }}
+/>
+{errors.email && <p style={{ color: 'red' }}>Email is required</p>}
 ```
 
-**.jsx**
+#### 7. Prevent Multiple Submissions
+To prevent multiple submissions, you can disable the submit button once the form is submitted.
 ```jsx
+const [isSubmitting, setIsSubmitting] = useState(false);
 
+const onSubmit = async (data) => {
+  setIsSubmitting(true);
+  // simulate async task
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  setIsSubmitting(false);
+};
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  <button type="submit" disabled={isSubmitting}>
+    {isSubmitting ? "Submitting..." : "Submit"}
+  </button>
+</form>
 ```
+#### Full Example :
+**App.jsx**
+```jsx
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+function MyForm() {
+  // useForm hook provides utilities to handle form state
+  const {
+    register,        // to register input fields
+    handleSubmit,    // to handle form submission
+    formState: { errors }, // to track form errors
+  } = useForm();
+  
+  const [isSubmitting, setIsSubmitting] = useState(false); // to manage form submission state
+
+  // Function to handle form data submission
+  const onSubmit = async (data) => {
+    setIsSubmitting(true); // disable the submit button
+    console.log("Form Data:", data);
+    
+    // Simulating an async task (e.g., API call)
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    setIsSubmitting(false); // enable the submit button after task is complete
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* Input for Name with basic registration */}
+      <div>
+        <label>Name:</label>
+        <input 
+          {...register("name", { required: "Name is required" })} 
+          placeholder="Enter your name" 
+          style={{ borderColor: errors.name ? 'red' : 'black' }}
+        />
+        {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
+      </div>
+
+      {/* Input for Email with required validation */}
+      <div>
+        <label>Email:</label>
+        <input 
+          {...register("email", { 
+            required: "Email is required", 
+            pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" }
+          })} 
+          placeholder="Enter your email"
+          style={{ borderColor: errors.email ? 'red' : 'black' }}
+        />
+        {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
+      </div>
+
+      {/* Input for Password with minimum length validation */}
+      <div>
+        <label>Password:</label>
+        <input 
+          type="password" 
+          {...register("password", { 
+            required: "Password is required", 
+            minLength: { value: 6, message: "Password must be at least 6 characters" } 
+          })}
+          placeholder="Enter your password"
+          style={{ borderColor: errors.password ? 'red' : 'black' }}
+        />
+        {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>}
+      </div>
+
+      {/* Submit button with prevent multiple submissions */}
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : "Submit"}
+      </button>
+    </form>
+  );
+}
+
+export default MyForm;
+```
+
+
+
 
 **.jsx**
 ```jsx
