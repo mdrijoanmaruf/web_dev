@@ -1,10 +1,11 @@
 # React JS
 React is a JavaScript library for building user interfaces. It uses components and a virtual DOM to create efficient and reusable UI code.
 
-## Installation
-#### Step 1 : Install React Using Vite :
-
-    npm create vite@latest
+## Installation React + Tailwind
+#### Step 1: Create a Vite + React project
+```
+npm create vite@latest
+```
 
 * Name the project (e.g., my-vite-app)
 * Choose React and JavaScript or TypeScript
@@ -17,18 +18,57 @@ React is a JavaScript library for building user interfaces. It uses components a
 
 #### Step 2: Navigate to the Project Directory
 Change into the project folder using:
-
-    cd my-vite-app
+```
+cd my-vite-app
+```
 
 
 #### Step 3: Install Dependencies
 Run the following command to install the required dependencies:
+```
+npm install
+```
 
-    npm install
+
+#### Step 4 : Install Tailwind CSS
+1. Inside your project directory, install Tailwind CSS and its dependencies
+
+```
+npm install -D tailwindcss postcss autoprefixer
+```
+2. Generate the Tailwind configuration files:
+```
+npx tailwindcss init -p
+```
+
+
+#### Step 5: Configure Tailwind CSS
+1. Open `tailwind.config.js` and configure the `content` paths to point to your React files:
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+2. In your `src` directory, locate the `index.css` (or create one if it doesn’t exist) and add the following Tailwind directives:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
 
 
-#### Step 4: Start the Development Server
+
+#### Step 6: Start the Development Server
 You can now start the development server with:
 
     npm run dev
