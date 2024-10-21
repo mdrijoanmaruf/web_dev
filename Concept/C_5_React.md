@@ -1664,144 +1664,157 @@ function MyForm() {
 export default MyForm;
 ```
 
+## React Redux Toolkit
+React app with increment, decrement, increment by amount, and reset functionality using Redux Toolkit, keeping all Redux-related files in the redux folder.
 
+### Step 1 : Install Dependencies
+Install @reduxjs/toolkit and react-redux in your project.
 
-### React Redux Toolkit
-
-#### 1. Install Dependencies
-Before starting, install the necessary libraries:
-
-```jsx
+```
 npm install @reduxjs/toolkit react-redux
 ```
 
-#### 2. Create a Redux Slice
-The slice holds the reducer logic and actions for a specific feature.
+### Step 2 : Folder Structure
+
+```
+src
+├── App.jsx
+├── Counter.jsx
+├── main.jsx
+└── redux
+    ├── counterSlice.js
+    └── store.js
+```
+
+### Step 3 : Set up counterSlice.js
+Create a `counterSlice.js` file in the `redux` folder. This file will contain the Redux slice with actions for incrementing, decrementing, resetting, and incrementing by a specified amount.
 
 ```jsx
-// src/features/counterSlice.js
+// src/redux/counterSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-// Define initial state
 const initialState = {
   value: 0,
 };
 
-// Create a slice with reducers
-export const counterSlice = createSlice({
-  name: 'counter', // Name of the slice
-  initialState,    // Initial state
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
   reducers: {
     increment: (state) => {
-      state.value += 1;  // Logic to increase the value
+      state.value += 1;
     },
     decrement: (state) => {
-      state.value -= 1;  // Logic to decrease the value
+      state.value -= 1;
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload;  // Increase by custom amount
+      state.value += action.payload;
+    },
+    reset: (state) => {
+      state.value = 0;
     },
   },
 });
 
-// Export actions to use in components
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+// Export actions for dispatching in components
+export const { increment, decrement, incrementByAmount, reset } = counterSlice.actions;
 
-// Export the reducer to use in store
+// Export the reducer to be included in the store
 export default counterSlice.reducer;
 ```
 
-#### 3. Configure the Store
-Now, configure the store to include the slice reducer.
+### Step 4: Set up store.js
+Create a `store.js` file in the `redux` folder to configure the Redux store and combine reducers if needed.
 
 ```jsx
-// src/app/store.js
+// src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counterSlice';
+import counterReducer from './counterSlice'; // Import the counter reducer
 
-// Create and configure the store
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,  // Add the counter reducer to the store
+    counter: counterReducer, // Add the counter reducer to the store
   },
 });
 ```
 
-#### 4. Set Up Redux in React App
-Wrap your React app with the Provider to give access to the Redux store.
-
-
+### Step 5: Wrap the App with Redux Provider
+In your `main.jsx` wrap your App component with the Redux Provider to make the store available to all components.
 
 ```jsx
-// src/index.js
+// src/main.jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { store } from './redux/store'; // Import the store
 import App from './App';
 
-// Wrap the App component with Provider
-ReactDOM.render(
-  <Provider store={store}>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Provider store={store}> {/* Wrap App with Provider */}
     <App />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
 ```
 
-#### 5. Using Redux State and Dispatch in Components
-Now, let’s create a component that interacts with the Redux store.
+### Step 6: Create Counter Component
+In your `Counter.jsx` component, use the Redux hooks `useDispatch` and `useSelector` to dispatch actions and access the counter state.
 
 ```jsx
-// src/features/CounterComponent.js
-import React from 'react';
+// src/Counter.jsx
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, incrementByAmount } from './counterSlice';
+import { increment, decrement, incrementByAmount, reset } from './redux/counterSlice';
 
-const CounterComponent = () => {
-  // Get the counter value from the Redux store
-  const count = useSelector((state) => state.counter.value);
-
-  // Get the dispatch function to trigger actions
+const Counter = () => {
+  const count = useSelector((state) => state.counter.value); // Access state from the store
   const dispatch = useDispatch();
+  const [amount, setAmount] = useState(0);
 
   return (
-    <div>
-      <h1>Count: {count}</h1>
-      
-      {/* Dispatch increment action */}
+    <div className="counter">
+      <h1>Counter: {count}</h1>
+
       <button onClick={() => dispatch(increment())}>Increment</button>
-      
-      {/* Dispatch decrement action */}
       <button onClick={() => dispatch(decrement())}>Decrement</button>
-      
-      {/* Dispatch incrementByAmount action with custom value */}
-      <button onClick={() => dispatch(incrementByAmount(5))}>Increment by 5</button>
+
+      <div>
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+          placeholder="Enter amount"
+        />
+        <button onClick={() => dispatch(incrementByAmount(amount))}>Increment by Amount</button>
+      </div>
+
+      <button onClick={() => dispatch(reset())}>Reset</button>
     </div>
   );
 };
 
-export default CounterComponent;
+export default Counter;
 ```
 
-#### 6. Using the Component in the App
-Finally, use the component inside your main App.
+### Step 7: Use Counter in App
+Finally, import the Counter component into your `App.jsx` and render it
 
 ```jsx
-// src/App.js
+// src/App.jsx
 import React from 'react';
-import CounterComponent from './features/CounterComponent';
+import Counter from './Counter'; // Import Counter component
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <CounterComponent />
+      <Counter />
     </div>
   );
-}
+};
 
 export default App;
 ```
+
+
 
 ### useRef Hook
 The `useRef` hook in React allows you to persist values between renders and directly access DOM elements. Unlike `useState`, changes to a `useRef` value do not trigger a re-render.
