@@ -1092,7 +1092,7 @@ React Router is a library that enables navigation between different pages in a R
 
 
 
-**App.jsx**
+**main.jsx**
 ```jsx
 import { useState } from 'react';  // Import useState for state
 import './App.css';  // Import CSS
