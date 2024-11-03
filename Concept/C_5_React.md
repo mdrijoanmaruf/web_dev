@@ -2,7 +2,11 @@
 React is a JavaScript library for building user interfaces. It uses components and a virtual DOM to create efficient and reusable UI code.
 
 ## Installation React + Tailwind
-#### Step 1: Create a Vite + React project
+### Simply Clone This Repo : 
+```
+https://github.com/mdrijoanmaruf/react-tailwind.git
+```
+#### Or, Step 1: Create a Vite + React project
 ```
 npm create vite@latest
 ```
