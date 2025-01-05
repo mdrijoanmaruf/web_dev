@@ -108,6 +108,59 @@ Targets all elements on the page. The * symbol is used as the universal selector
 }
 ```
 
+### Attribute Selector :
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+#### 
+```css
+
+```
+
+
 
 ## Font :
 ### Font Style :
