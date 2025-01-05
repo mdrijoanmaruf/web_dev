@@ -163,6 +163,18 @@ It is used to embed or import images in a webpage.
 <img src="Source_of_image" alt="Alternate text">
 ```
 
+### figure tag :
+**Purpose :**
+* `<figure>`: Groups related content (e.g., images, charts).
+* `<figcaption>`: Adds a caption or description to the content.
+
+```css
+<figure>
+  <img src="nature.jpg" alt="Beautiful nature">
+  <figcaption>A serene view of nature.</figcaption>
+</figure>
+```
+
 
 ### video tag :
 It is used to embed videos on a webpage.
@@ -291,6 +303,42 @@ We use various input types and buttons inside a form as form elements
 </form>
 ```
 ![alt text](Img/html_form.png)
+
+```css
+<form>
+  <!-- Grouping related form fields using fieldset -->
+  <fieldset>
+    <!-- Title for the fieldset -->
+    <legend>Event Registration</legend>
+
+    <!-- Input field for the user's name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name">
+    <br> <!-- Line break for better spacing -->
+
+    <!-- Input field for the user's email -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email">
+    <br> <!-- Line break for better spacing -->
+
+    <!-- Input field for the date of birth -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob">
+    <br> <!-- Line break for better spacing -->
+
+    <!-- Display event date using the <time> element -->
+    <p>Event Date: <time datetime="2025-01-02">January 2, 2025</time></p>
+  </fieldset>
+
+  <!-- Submit button to send the form -->
+  <input type="submit" value="Register">
+  <br> <!-- Line break for better spacing -->
+
+  <!-- Reset button to clear all form fields -->
+  <input type="reset" value="Reset">
+</form>
+```
+![alt text](Img/image-1.png)
 
 ## Characters & Symbols :
 Some symbols are not directly present on the keyboard, but there are some ways to use them in HTML documents. We can display them either by entity name, decimal, or hexadecimal value.
