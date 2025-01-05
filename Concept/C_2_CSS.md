@@ -110,55 +110,98 @@ Targets all elements on the page. The * symbol is used as the universal selector
 
 ### Attribute Selector :
 
-#### 
-```css
-
+#### Basic Attribute Selector :
+```html
+<input type="text" placeholder="Enter name">
+<input type="password" placeholder="Enter password">
+<input type="email" placeholder="Enter email">
 ```
 
-#### 
 ```css
-
+[input] {
+  border: 1px solid gray; /* Applies to all input elements */
+}
 ```
 
-#### 
-```css
+#### 2. Attribute Equals Value
 
+```html
+<input type="text" placeholder="Enter name">
+<input type="password" placeholder="Enter password">
 ```
 
-#### 
 ```css
-
+[type="password"] {
+  background-color: lightyellow; /* Highlights password inputs */
+}
 ```
 
-#### 
-```css
+#### 3. Attribute Contains Word
 
+```html
+<button class="btn primary">Submit</button>
+<button class="btn secondary">Cancel</button>
+```
+```css
+[class~="btn"] {
+  padding: 10px; /* Styles elements with 'btn' in the class attribute */
+}
 ```
 
-#### 
-```css
 
+#### 4. Attribute Starts With
+
+```html
+<a href="https://example.com">Secure Link</a>
+<a href="http://example.com">Non-Secure Link</a>
+```
+```css
+[href^="https"] {
+  color: green; /* Applies only to secure links (https) */
+}
 ```
 
-#### 
-```css
 
+#### 5. Attribute Ends With
+
+```html
+<a href="document.pdf">Download PDF</a>
+<a href="image.jpg">View Image</a>
+```
+```css
+[href$=".pdf"] {
+  text-decoration: underline; /* Styles links ending with '.pdf' */
+}
 ```
 
-#### 
-```css
 
+
+#### 6. Attribute Contains Substring
+
+```html
+<img src="user-profile-picture.jpg" alt="User's profile">
+<img src="profile-banner.jpg" alt="Profile banner">
+```
+```css
+[src*="profile"] {
+  border-radius: 50%; /* Makes profile images circular */
+}
 ```
 
-#### 
-```css
 
+
+#### 7. Combine Attribute Selectors
+```html
+<input type="checkbox" checked>
+<input type="checkbox">
+```
+```css
+[input[type="checkbox"][checked]] {
+  outline: 2px solid blue; /* Highlights checked checkboxes */
+}
 ```
 
-#### 
-```css
 
-```
 
 
 
@@ -259,7 +302,7 @@ p {
 ```
 
 
-### Backgroung Color :
+### Background Color :
 
 ```css
 div {
@@ -267,6 +310,51 @@ div {
 }
 ```
 
+### Background Image
+
+#### 1. Set Background Image :
+```css
+element {
+  background-image: url("image-path");
+}
+```
+
+#### 2. Multiple Background :
+```css
+element {
+  background-image: url("image1.jpg"), url("image2.png");
+}
+```
+
+#### 3. Position :
+```css
+background-position: center; /* top, bottom, left, right, x y */
+```
+
+#### 4. Size :
+```css
+background-size: cover; /* cover, contain, or width height */
+```
+
+#### 5. Repeat :
+```css
+background-repeat: no-repeat; /* repeat, repeat-x, repeat-y */
+```
+
+#### 6. Attachment :
+```css
+background-attachment: fixed; /* scroll, local */
+```
+
+#### 7. Shorthand :
+```css
+background: url("image.jpg") no-repeat center/cover;
+```
+
+#### 8. Gradients With Image : 
+```css
+background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("image.jpg");
+```
 
 ### Text Color :
 
@@ -333,6 +421,16 @@ Same as heigth.
 ```css
 div {
   width: 50vw;
+}
+```
+
+### Max/Min - Height/Width :
+```css
+div {
+  max-width: 500px;  /* Restricts width to 500px max */
+  min-width: 200px;  /* Ensures width is at least 200px */
+  max-height: 300px; /* Restricts height to 300px max */
+  min-height: 100px; /* Ensures height is at least 100px */
 }
 ```
 
