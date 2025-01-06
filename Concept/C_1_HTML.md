@@ -304,7 +304,7 @@ We use various input types and buttons inside a form as form elements
 ```
 ![alt text](Img/html_form.png)
 
-```css
+```html
 <form>
   <!-- Grouping related form fields using fieldset -->
   <fieldset>
