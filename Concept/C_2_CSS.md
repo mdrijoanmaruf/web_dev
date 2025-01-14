@@ -1290,7 +1290,7 @@ animation: [animation-name] [animation-duration] [animation-timing-function] [an
 animation: bounce 2s ease-in-out 0.5s infinite alternate forwards;
 ```
 
-## Pseudo-Classes
+### Pseudo-Classes
 **CSS Pseudo-Classes**  
 Pseudo-classes are keywords added to selectors to apply styles based on an element's state or position, without extra classes or JavaScript.
 
@@ -1368,6 +1368,105 @@ input:disabled {
   background-color: #e0e0e0; /* Change background color of disabled inputs */
 }
 ```
+
+## Common Pseudo-Elements with Examples
+
+#### 1. **`::before`**
+Adds content before the element's main content.
+```css
+h1::before {
+  content: "👉 ";
+  color: red;
+}
+```
+
+#### 2. **`::after`**
+Adds content after the element's main content.
+```css
+h1::after {
+  content: " 🎉";
+  color: green;
+}
+```
+
+#### 3. **`::first-letter`**
+Styles the first letter of the element's text.
+```css
+p::first-letter {
+  font-size: 2em;
+  color: blue;
+}
+```
+
+#### 4. **`::first-line`**
+Styles the first line of the element's text.
+```css
+p::first-line {
+  font-weight: bold;
+  text-decoration: underline;
+}
+```
+
+#### 5. **`::selection`**
+Styles the portion of text selected by the user.
+```css
+::selection {
+  background-color: yellow;
+  color: black;
+}
+```
+
+#### Key Notes
+
+- **Usage**: Pseudo-elements are written using a double colon (`::`), although single colon (`:`) syntax is still supported in older versions of CSS for backward compatibility.
+- **No Direct DOM Representation**: Pseudo-elements exist in the rendering layer but are not part of the DOM structure.
+- **Combination with Pseudo-Classes**: They can be combined with pseudo-classes like `:hover` for interactive styling.
+  
+  Example:
+  ```css
+  a:hover::after {
+    content: " (hovered)";
+    color: orange;
+  }
+  ```
+
+#### Practical Applications
+
+- Adding decorative icons or symbols.
+- Highlighting parts of text, like the first letter or line.
+- Customizing text selection to match the theme.
+- Implementing visual effects dynamically without extra HTML.
+
+#### Example: Styling a Button with `::before` and `::after`
+```html
+<button class="fancy-button">Click Me</button>
+```
+```css
+.fancy-button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  font-size: 16px;
+}
+
+.fancy-button::before {
+  content: "✨";
+  position: absolute;
+  left: -20px;
+}
+
+.fancy-button::after {
+  content: "✨";
+  position: absolute;
+  right: -20px;
+}
+```
+
+
+
+
 
 ## Transition :
 **CSS Transitions**  
