@@ -60,6 +60,8 @@ p {
 }
 ```
 
+---
+
 ## CSS Selector :
 Targeting HTML contant.
 ### Element Selector :
@@ -203,7 +205,7 @@ Targets all elements on the page. The * symbol is used as the universal selector
 
 
 
-
+---
 
 ## Font :
 ### Font Style :
@@ -264,7 +266,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 ```
-
+---
 ## Colors :
 ### Hexadecimal :
 ```css
@@ -363,7 +365,7 @@ p {
   color: #FF5733; /* HEX */
 }
 ```
-
+---
 
 ## Border :
 ### Border Style :
@@ -434,7 +436,7 @@ div {
 }
 ```
 
-
+---
 ## Box :
 ### Box Mode :
 ![alt text](Img/css_box.png)
@@ -505,7 +507,7 @@ div {
 }
 ```
 
-
+---
 ## Display Property :
 ### Display Block (display: block)
 **Definition**: Makes an element a block-level element.
@@ -588,7 +590,7 @@ div {
   /* The div will remain 300 pixels wide, with padding and border inside this width. */
 }
 ```
-
+---
 ## Position Property :
 ### Position: Relative (position: relative)
 The element is positioned relative to its normal position. You can move it using top, right, bottom, or left without affecting other elements.
@@ -635,6 +637,8 @@ The element toggles between relative and fixed positioning, depending on the scr
   background-color: yellow;
 }
 ```
+
+----
 ## Units :
 ### px (Pixels)
 A fixed unit representing the number of pixels on the screen. It provides precise control but is not responsive to different screen sizes.
@@ -733,6 +737,8 @@ The overflow property controls what happens to content that is too large for its
   overflow: scroll;
 }
 ```
+
+---
 ## FlexBox
 Flexbox is a layout model that allows you to design complex layouts with ease by distributing space along a container's main and cross axes.
 ![alt text](Img/css_flexbox.png)
@@ -869,6 +875,7 @@ Allows you to override the align-items property for individual flex items, align
   align-self: flex-end;
 }
 ```
+---
 
 ## Important Factors in Responsive Design 
 
@@ -963,7 +970,7 @@ Allows you to override the align-items property for individual flex items, align
     <img src="low-res.jpg" srcset="high-res.jpg 2x" alt="Responsive Image">
     ```  
 
-
+---
 ## Media Queries
 Media queries are a feature in CSS that allow you to apply styles conditionally based on certain criteria, such as the screen size, device orientation, resolution, and more. They are essential for creating responsive web designs that adapt to different devices.
 
@@ -1035,6 +1042,9 @@ Apply styles based on whether the device is in portrait or landscape orientation
   }
 }
 ```
+
+
+---
 ## Box Shadow 
 ### Basic Shadow :
 A simple shadow with no blur or spread.
@@ -1081,6 +1091,8 @@ You can add multiple shadows to an element by separating them with commas.
               -5px -5px 10px rgba(255, 0, 0, 0.5); /* Two shadows: one black, one red */
 }
 ```
+
+---
 ## Text Shadow :
 ### Basic Text Shadow
 A simple shadow with no blur.
@@ -1131,6 +1143,8 @@ While text-shadow doesn't directly support inset shadows like box-shadow, you ca
                -1px -1px 2px #000; /* Dark shadow for depth */
 }
 ```
+
+---
 ## Custom Properties(Variable)
 ### Declaring a Variable
 Variables are defined using the -- prefix and can be declared globally or within a specific selector.
@@ -1172,6 +1186,8 @@ You can provide a fallback value in case the variable is not defined.
   color: var(--secondary-color, #e74c3c); /* Fallback to #e74c3c if --secondary-color is not defined */
 }
 ```
+
+---
 ## Animation
 CSS animations are typically created using two main components:
 
@@ -1368,7 +1384,7 @@ input:disabled {
   background-color: #e0e0e0; /* Change background color of disabled inputs */
 }
 ```
-
+---
 ## Common Pseudo-Elements with Examples
 
 #### 1. **`::before`**
@@ -1467,7 +1483,7 @@ Styles the portion of text selected by the user.
 
 
 
-
+---
 ## Transition :
 **CSS Transitions**  
 CSS transitions allow gradual changes between styles over a set duration, creating smooth, animated effects that enhance user experience with fluid and interactive designs.
@@ -1523,7 +1539,7 @@ Defines the delay before the transition starts.
 ```css
 transition-delay: 0.5s;
 ```
-
+---
 ## 2D Transform
 CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, altering their position, size, and orientation without affecting the layout of other elements.
 
@@ -1570,7 +1586,7 @@ CSS 2D transforms let you move, rotate, scale, and skew elements in a 2D space, 
   transform: matrix(1, 0.2, 0.2, 1, 50, 50);
 }
 ```
-
+---
 ## 3D Transforms :
 ### rotateX(angle)
 Rotates an element around the X-axis.
@@ -1659,7 +1675,7 @@ You can combine multiple 3D transforms in a single transform property.
   */
 }
 ```
-
+---
 ## CSS GRID (Container Properties)
 
 CSS Grid Layout is a powerful layout system that provides a way to arrange elements in rows and columns. The grid container is the parent element that holds grid items (children), and it controls the overall layout using various grid properties.
@@ -1891,7 +1907,7 @@ Behavior: This grid layout will create as many columns as possible, each with a 
 }
 ```
 
-
+---
 ## CSS GRID(Grid Items Properties)
 Grid items (children) are placed inside a grid container (parent). These items can be positioned and aligned within the grid using specific properties that define their size, location, and alignment.
 
