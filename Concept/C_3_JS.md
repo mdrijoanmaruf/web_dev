@@ -177,6 +177,120 @@ let str3 = `Hello, ${str2}`;
 console.log(str3);  // "Hello, World"
 ```
 
+
+
+#### String Methods
+
+JavaScript provides a variety of built-in string methods for manipulating and working with strings. Below are some of the most frequently used string functions with examples:
+
+1. **`length`**  
+Returns the length of a string.  
+```javascript
+let str = "Hello";
+console.log(str.length); // Output: 5
+```
+
+2. **`toUpperCase()`**  
+Converts the string to uppercase.  
+```javascript
+let str = "hello";
+console.log(str.toUpperCase()); // Output: "HELLO"
+```
+
+3. **`toLowerCase()`**  
+Converts the string to lowercase.  
+```javascript
+let str = "HELLO";
+console.log(str.toLowerCase()); // Output: "hello"
+```
+
+4. **`trim()`**  
+Removes whitespace from both ends of a string.  
+```javascript
+let str = "  Hello  ";
+console.log(str.trim()); // Output: "Hello"
+```
+
+5. **`charAt(index)`**  
+Returns the character at the specified index.  
+```javascript
+let str = "Hello";
+console.log(str.charAt(1)); // Output: "e"
+```
+
+6. **`indexOf(substring)`**  
+Returns the index of the first occurrence of a substring.  
+```javascript
+let str = "Hello World";
+console.log(str.indexOf("World")); // Output: 6
+```
+
+7. **`substring(start, end)`**  
+Extracts a portion of the string between two indices.  
+```javascript
+let str = "Hello World";
+console.log(str.substring(0, 5)); // Output: "Hello"
+```
+
+8. **`slice(start, end)`**  
+Similar to `substring`, but allows negative indices.  
+```javascript
+let str = "Hello World";
+console.log(str.slice(-5)); // Output: "World"
+```
+
+9. **`replace(old, new)`**  
+Replaces a specified value with another value in the string.  
+```javascript
+let str = "Hello World";
+console.log(str.replace("World", "Universe")); // Output: "Hello Universe"
+```
+
+10. **`split(separator)`**  
+Splits a string into an array based on a separator.  
+```javascript
+let str = "Hello,World";
+console.log(str.split(",")); // Output: ["Hello", "World"]
+```
+
+11. **`includes(substring)`**  
+Checks if a string contains a specified substring.  
+```javascript
+let str = "Hello World";
+console.log(str.includes("World")); // Output: true
+```
+
+12. **`startsWith(substring)`**  
+Checks if a string starts with a specified substring.  
+```javascript
+let str = "Hello World";
+console.log(str.startsWith("Hello")); // Output: true
+```
+
+13. **`endsWith(substring)`**  
+Checks if a string ends with a specified substring.  
+```javascript
+let str = "Hello World";
+console.log(str.endsWith("World")); // Output: true
+```
+
+14. **`concat(str1, str2)`**  
+Combines two or more strings.  
+```javascript
+let str1 = "Hello";
+let str2 = "World";
+console.log(str1.concat(" ", str2)); // Output: "Hello World"
+```
+
+15. **`repeat(count)`**  
+Repeats a string a specified number of times.  
+```javascript
+let str = "Hello";
+console.log(str.repeat(3)); // Output: "HelloHelloHello"
+```
+
+
+
 ### Boolean
 Represents logical values, either true or false.
 
