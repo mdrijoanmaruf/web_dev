@@ -2,7 +2,7 @@
 
 ## Variable type :
 ### var :
-var is function or global scope and is hoisted to the top of its scope.
+var is function or global scope and is `hoisted` to the top of its scope.
 ```js
 var x = 10;
 if (true) {
@@ -75,13 +75,13 @@ Literals in JavaScript represent fixed values, defining a variable's data type a
 ### String Literals:
 Represent sequences of characters enclosed in single ('') or double ("") quotes.
 ```js
-let myName = "Mayank Pandey";
+let myName = "Rijoan Maruf";
 let message = 'JavaScript is a scripting language.';
 ```
 **Concatenation**: Strings can be concatenated using the + operator.
 ```js
-let fullName = "Mayank" + " " + "Pandey";
-console.log(fullName); // Output: Mayank Pandey
+let fullName = "Rijoan" + " " + "Maruf";
+console.log(fullName); // Output: Rijoan Maruf
 ```
 
 ### Template Literals:
@@ -1119,18 +1119,87 @@ console.log("Cos:", Math.cos(0)); // 1
 ### Date :
 
 ```js
-// Current date and time
-let now = new Date();
+// 1. Create a new Date object with the current date and time
+const now = new Date();
 console.log("Current Date and Time:", now);
 
-// Specific date (year, month (0-based), day)
-let specificDate = new Date(2024, 8, 8); // September 8, 2024 (months are 0-indexed)
-console.log("Specific Date:", specificDate);
+// 2. Create a Date object for a specific date and time
+const specificDate = new Date(2023, 9, 15, 14, 30, 0); // Year, Month (0-11), Day, Hour, Minute, Second
+console.log("Specific Date and Time:", specificDate);
 
-// Specific date with time (year, month, day, hours, minutes, seconds, milliseconds)
-let specificDateTime = new Date(2024, 8, 8, 10, 30, 0);
-console.log("Specific Date and Time:", specificDateTime);
+// 3. Get individual components of a date
+const year = now.getFullYear();
+const month = now.getMonth(); // 0-11 (0 = January, 11 = December)
+const day = now.getDate();
+const hours = now.getHours();
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+const milliseconds = now.getMilliseconds();
+const dayOfWeek = now.getDay(); // 0-6 (0 = Sunday, 6 = Saturday)
+
+console.log(`Year: ${year}, Month: ${month}, Day: ${day}`);
+console.log(`Time: ${hours}:${minutes}:${seconds}.${milliseconds}`);
+console.log("Day of the Week:", dayOfWeek);
+
+// 4. Set individual components of a date
+now.setFullYear(2024);
+now.setMonth(11); // December (0-11)
+now.setDate(25);
+now.setHours(12);
+now.setMinutes(0);
+now.setSeconds(0);
+console.log("Updated Date and Time:", now);
+
+// 5. Format a date as a string
+const dateString = now.toDateString();
+const timeString = now.toTimeString();
+const isoString = now.toISOString(); // ISO 8601 format
+const localeString = now.toLocaleString(); // Localized date and time
+const localeDateString = now.toLocaleDateString(); // Localized date
+const localeTimeString = now.toLocaleTimeString(); // Localized time
+
+console.log("Date String:", dateString);
+console.log("Time String:", timeString);
+console.log("ISO String:", isoString);
+console.log("Locale String:", localeString);
+console.log("Locale Date String:", localeDateString);
+console.log("Locale Time String:", localeTimeString);
+
+// 6. Calculate the difference between two dates
+const startDate = new Date(2023, 9, 1);
+const endDate = new Date(2023, 9, 15);
+const timeDifference = endDate - startDate; // Difference in milliseconds
+const daysDifference = timeDifference / (1000 * 60 * 60 * 24); // Convert to days
+console.log("Difference between dates (in days):", daysDifference);
+
+// 7. Add or subtract time from a date
+const futureDate = new Date();
+futureDate.setDate(now.getDate() + 7); // Add 7 days
+futureDate.setHours(now.getHours() + 2); // Add 2 hours
+console.log("Date 7 days and 2 hours from now:", futureDate);
+
+// 8. Compare two dates
+const date1 = new Date(2023, 9, 15);
+const date2 = new Date(2023, 9, 20);
+if (date1 < date2) {
+    console.log("Date1 is earlier than Date2");
+} else if (date1 > date2) {
+    console.log("Date1 is later than Date2");
+} else {
+    console.log("Date1 and Date2 are the same");
+}
+
+// 9. Get the current timestamp
+const timestamp = Date.now(); // Milliseconds since January 1, 1970
+console.log("Current Timestamp:", timestamp);
+
+// 10. Parse a date from a string
+const parsedDate = new Date("2023-10-15T14:30:00Z"); // ISO 8601 format
+console.log("Parsed Date:", parsedDate);
 ```
+
+
+
 **Get Function :**
 ```js
 // Get current year
