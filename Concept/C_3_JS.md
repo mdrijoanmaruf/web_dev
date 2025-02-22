@@ -1804,7 +1804,7 @@ Capture keypresses and perform actions based on the keys pressed.
 
 Event bubbling means that when an event occurs on an element, it first runs on that element and then propagates **upwards** (from child to parent) in the DOM tree.
 
-
+![alt text](Img/event-bubbling.png)
 
 
 **Example: Event Bubbling**
@@ -1874,6 +1874,9 @@ Stops the event from reaching any other event listeners on the same element.
 
 Event delegation allows us to attach a single event listener to a **parent** element instead of adding multiple listeners to each child element. Useful when handling **dynamically added elements**.
 
+![alt text](Img/js-event-delegation.png)
+
+
 **Example: Using Event Delegation**
 ```html
 <ul id="list">
@@ -1896,11 +1899,11 @@ Event delegation allows us to attach a single event listener to a **parent** ele
 
 
 
-### addEventListener
+### addEventListener :
 
 Attaches an event handler to an element. You can pass either an inline (inner) function or a separate (outer) function.
 
-#### listener function
+#### listener function :
 
 The function that gets executed when an event occurs. We use an outer function here.
 
@@ -1911,7 +1914,7 @@ function handleEvent(event) {
 element.addEventListener("click", handleEvent);
 ```
 
-#### event
+#### event :
 
 The event object automatically passed to the listener function contains all the event-related information.
 
@@ -1922,7 +1925,7 @@ function handleEvent(event) {
 element.addEventListener("click", handleEvent);
 ```
 
-#### target
+#### target :
 
 Refers to the element that triggered the event.
 
@@ -1933,7 +1936,7 @@ function handleEvent(event) {
 element.addEventListener("click", handleEvent);
 ```
 
-#### nodeName
+#### nodeName :
 
 Represents the tag name (node name) of the target element.
 
@@ -1944,7 +1947,7 @@ function handleEvent(event) {
 element.addEventListener("click", handleEvent);
 ```
 
-#### type
+#### type :
 
 The type of event that occurred, such as 'click', 'keydown', etc.
 
@@ -1955,7 +1958,7 @@ function handleEvent(event) {
 element.addEventListener("click", handleEvent);
 ```
 
-#### Prevent default action (preventDefault)
+#### Prevent default action (preventDefault) :
 
 Prevents the default action associated with the event (e.g., link navigation).
 
@@ -1976,7 +1979,7 @@ element.addEventListener("click", function () {
 });
 ```
 
-### removeEventListener
+#### removeEventListener :
 
 Removes a previously added event listener. It must reference the same function that was used when adding the event listener.
 
