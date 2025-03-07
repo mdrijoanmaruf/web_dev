@@ -377,13 +377,13 @@ Objects are collections of key-value pairs where keys are strings (or Symbols) a
 ```js
 // Creating an Object
 let person = {
-  name: "Mayank",
+  name: "Rijoan", 
   age: 21,
   country: "Bangladesh",
 };
 
 // Accessing Properties
-console.log(person.name); // Dot notation: Output: Mayank
+console.log(person.name); // Dot notation: Output: Rijoan
 console.log(person["age"]); // Bracket notation: Output: 21
 
 // Modifying Properties
@@ -391,14 +391,14 @@ person.age = 22; // Modify property 'age'
 person.city = "Dhaka"; // Add new property 'city'
 delete person.country; // Delete property 'country'
 
-console.log(person); // Output: { name: 'Mayank', age: 22, city: 'Dhaka' }
+console.log(person); // Output: { name: 'Rijoan', age: 22, city: 'Dhaka' }
 
 // Methods in Objects
 person.greet = function () {
   console.log(`Hello, my name is ${this.name}`); // Method to greet
 };
 
-person.greet(); // Calls the method: Output: Hello, my name is Mayank
+person.greet(); // Calls the method: Output: Hello, my name is Rijoan
 
 // Finding Keys
 let keys = Object.keys(person);
@@ -406,7 +406,24 @@ console.log("Keys in the object:", keys); // Output: Keys in the object: [ 'name
 
 // Finding Values
 let values = Object.values(person);
-console.log("Values in the object:", values); // Output: Values in the object: [ 'Mayank', 22, 'Dhaka', [Function: greet] ]
+console.log("Values in the object:", values); // Output: Values in the object: [ 'Rijoan', 22, 'Dhaka', [Function: greet] ]
+
+// Using Object.entries()
+let entries = Object.entries(person);
+console.log("Entries in the object:", entries);
+// Output: Entries in the object: [ ['name', 'Rijoan'], ['age', 22], ['city', 'Dhaka'], ['greet', [Function: greet]] ]
+
+// Using Object.seal()
+Object.seal(person);
+person.age = 30; // Allowed: Modifying existing properties
+person.gender = "Male"; // Not allowed: Cannot add new properties
+console.log("After sealing:", person); // Output: { name: 'Rijoan', age: 30, city: 'Dhaka', greet: [Function: greet] }
+
+// Using Object.freeze()
+Object.freeze(person);
+person.age = 40; // Not allowed: Cannot modify existing properties
+person.gender = "Male"; // Not allowed: Cannot add new properties
+console.log("After freezing:", person); // Output: { name: 'Rijoan', age: 30, city: 'Dhaka', greet: [Function: greet] }
 ```
 
 ### Loop in object :
@@ -569,27 +586,6 @@ console.log(person8.name); // Output: Fahim
 person8.greet(); // Output: Hello, my name is Fahim
 ```
 
-### Add new Property :
-
-```js
-// Set year to 2025
-now.setFullYear(2025);
-console.log("Updated Year:", now);
-
-// Set month to December (11 because months are 0-indexed)
-now.setMonth(11);
-console.log("Updated Month:", now);
-
-// Set date (day of the month) to 25
-now.setDate(25);
-console.log("Updated Date:", now);
-
-// Set hours, minutes, and seconds
-now.setHours(15);
-now.setMinutes(45);
-now.setSeconds(30);
-console.log("Updated Time:", now);
-```
 
 ### Cloning Object Using Iteration
 
@@ -608,7 +604,7 @@ for (let key in obj1) {
 console.log("Clone1:", clone1); // { a: 1, b: 2, c: 3 }
 ```
 
-### Cloning Object Using Spread Operator (...)
+### Spread Operator (...)
 
 The spread operator is the most concise way to clone an object.
 
@@ -640,6 +636,53 @@ const mergedObj = Object.assign({}, objA, objB);
 
 console.log("Merged Object:", mergedObj); // { firstName: "John", lastName: "Doe" }
 ```
+### Object Destructuring
+Destructuring allows you to extract properties from objects into variables.
+```js
+let { name, age, city } = person;
+console.log(name); // Output: Mayank
+console.log(age); // Output: 22
+console.log(city); // Output: Dhaka
+
+// Renaming variables during destructuring
+let { name: fullName, age: years } = person;
+console.log(fullName); // Output: Mayank
+console.log(years); // Output: 22
+```
+
+### Optional Chaining (`?.`)
+Optional chaining prevents errors when accessing nested properties that may not exist.
+
+```js
+let user = {
+  profile: {
+    name: "Alice",
+    address: {
+      city: "Wonderland",
+    },
+  },
+};
+
+console.log(user.profile?.address?.city); // Output: Wonderland
+console.log(user.profile?.contact?.phone); // Output: undefined (no error)
+```
+
+
+### Dot Notation vs Bracket Notation
+* Dot Notation: Used when the property name is known and is a valid identifier.
+
+* Bracket Notation: Used when the property name is dynamic or contains special characters.
+
+```js
+// Dot Notation
+console.log(person.name); // Output: Mayank
+
+// Bracket Notation
+let property = "age";
+console.log(person[property]); // Output: 22
+```
+
+
 
 ## Functions :
 
@@ -1152,45 +1195,93 @@ if (true) {
 console.log(blockVar); // ReferenceError: blockVar is not defined
 ```
 
-## Class & Objects :
+## Classes and Objects 
 
-A class is a blueprint for creating objects with shared properties and methods.
+### 1. **Constructor**
+A constructor is a special method in a class that is automatically called when an object is created. It is used to initialize object properties.
 
-```js
+**Example:**
+```javascript
 class Person {
-  #age; // Private field
-
   constructor(name, age) {
-    this.name = name; // Public property
-    this.#age = age; // Private property
-  }
-
-  get age() {
-    return this.#age;
-  } // Getter for private field
-  set age(newAge) {
-    // Setter with validation
-    if (newAge > 0) this.#age = newAge;
-    else console.log("Age must be positive!");
+    this.name = name; // Initialize properties
+    this.age = age;
   }
 
   greet() {
-    // Public method
-    console.log(
-      `Hello, my name is ${this.name} and I am ${this.#age} years old.`
-    );
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
   }
 }
 
-// Object creation
-const person1 = new Person("Alice", 25);
-
-person1.greet(); // "Hello, my name is Alice and I am 25 years old."
-console.log(person1.age); // 25 (using getter)
-
-person1.age = 30; // Setting new age
-console.log(person1.age); // 30
+let person1 = new Person("Rijoan", 22); // Create an object
+person1.greet(); // Output: Hello, my name is Rijoan and I am 22 years old.
 ```
+
+
+### 2. **Encapsulation**
+Encapsulation is the concept of bundling data (properties) and methods (functions) that operate on the data into a single unit (class). It also involves restricting direct access to some of an object's components using **private fields** (denoted by `#`).
+
+**Example:**
+```javascript
+class BankAccount {
+  #balance; // Private field
+
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.#balance = balance;
+  }
+
+  deposit(amount) {
+    this.#balance += amount;
+    console.log(`Deposited ${amount}. New balance: ${this.#balance}`);
+  }
+
+  getBalance() {
+    return this.#balance; // Access private field via a method
+  }
+}
+
+let account = new BankAccount("Rijoan", 1000);
+account.deposit(500); // Output: Deposited 500. New balance: 1500
+console.log(account.getBalance()); // Output: 1500
+// console.log(account.#balance); // Error: Private field cannot be accessed directly
+```
+
+
+### 3. **Inheritance**
+Inheritance allows a class to inherit properties and methods from another class. The `extends` keyword is used to create a subclass, and `super()` is used to call the parent class's constructor.
+
+**Example:**
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+  }
+}
+
+class Dog extends Animal { // Dog inherits from Animal
+  constructor(name, breed) {
+    super(name); // Call parent constructor
+    this.breed = breed;
+  }
+
+  bark() {
+    console.log(`${this.name} barks!`);
+  }
+}
+
+let dog = new Dog("Buddy", "Golden Retriever");
+dog.speak(); // Output: Buddy makes a sound. (Inherited from Animal)
+dog.bark(); // Output: Buddy barks! (Specific to Dog)
+```
+
+
+
+
 
 ## In-Built Objects :
 
