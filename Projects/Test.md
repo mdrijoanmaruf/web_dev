@@ -1,83 +1,133 @@
-## Classes and Objects 
+## API , JSON 
 
-### 1. **Constructor**
-A constructor is a special method in a class that is automatically called when an object is created. It is used to initialize object properties.
+### **1. JSON (parse, stringify)**
+- **`JSON.parse()`**: Converts a JSON string into a JavaScript object.
+- **`JSON.stringify()`**: Converts a JavaScript object into a JSON string.
 
-**Example:**
 ```javascript
-class Person {
-  constructor(name, age) {
-    this.name = name; // Initialize properties
-    this.age = age;
-  }
+// Example: Convert JSON string to object and vice versa
+const jsonString = '{"name": "Rijoan Maruf", "age": 25}';
+const jsonObject = JSON.parse(jsonString); // Converts to object
+console.log(jsonObject.name); // Output: Rijoan Maruf
 
-  greet() {
-    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
-  }
-}
-
-let person1 = new Person("Rijoan", 22); // Create an object
-person1.greet(); // Output: Hello, my name is Rijoan and I am 22 years old.
+const backToString = JSON.stringify(jsonObject); // Converts back to string
+console.log(backToString); // Output: {"name":"Rijoan Maruf","age":25}
 ```
 
 
-### 2. **Encapsulation**
-Encapsulation is the concept of bundling data (properties) and methods (functions) that operate on the data into a single unit (class). It also involves restricting direct access to some of an object's components using **private fields** (denoted by `#`).
 
-**Example:**
+### **2. JSON Placeholder (GET, Display Data on UI)**
+- Fetch data from a fake API (e.g., JSONPlaceholder) and display it on the UI.
+
 ```javascript
-class BankAccount {
-  #balance; // Private field
-
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.#balance = balance;
-  }
-
-  deposit(amount) {
-    this.#balance += amount;
-    console.log(`Deposited ${amount}. New balance: ${this.#balance}`);
-  }
-
-  getBalance() {
-    return this.#balance; // Access private field via a method
-  }
+// Example: Fetch and display user data
+async function fetchData() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+    const data = await response.json();
+    document.getElementById('user').innerText = `Name: ${data.name}, Email: ${data.email}`;
 }
-
-let account = new BankAccount("Rijoan", 1000);
-account.deposit(500); // Output: Deposited 500. New balance: 1500
-console.log(account.getBalance()); // Output: 1500
-// console.log(account.#balance); // Error: Private field cannot be accessed directly
+fetchData();
 ```
 
 
-### 3. **Inheritance**
-Inheritance allows a class to inherit properties and methods from another class. The `extends` keyword is used to create a subclass, and `super()` is used to call the parent class's constructor.
 
-**Example:**
+### **3. CRUD Operations (GET, POST, PATCH, DELETE)**
+- **GET**: Retrieve data.
+- **POST**: Create new data.
+- **PATCH**: Update existing data.
+- **DELETE**: Delete data.
+
 ```javascript
-class Animal {
-  constructor(name) {
-    this.name = name;
-  }
+// Example: CRUD operations
+const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-  speak() {
-    console.log(`${this.name} makes a sound.`);
-  }
+// GET
+async function getPost() {
+    const response = await fetch(`${apiUrl}/1`);
+    const data = await response.json();
+    console.log(data);
 }
 
-class Dog extends Animal { // Dog inherits from Animal
-  constructor(name, breed) {
-    super(name); // Call parent constructor
-    this.breed = breed;
-  }
-
-  bark() {
-    console.log(`${this.name} barks!`);
-  }
+// POST
+async function createPost() {
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: JSON.stringify({ title: 'Rijoan Maruf', body: 'Hello World', userId: 1 }),
+        headers: { 'Content-type': 'application/json' },
+    });
+    const data = await response.json();
+    console.log(data);
 }
 
-let dog = new Dog("Buddy", "Golden Retriever");
-dog.speak(); // Output: Buddy makes a sound. (Inherited from Animal)
-dog.bark(); // Output: Buddy barks! (Specific to Dog)
+// PATCH
+async function updatePost() {
+    const response = await fetch(`${apiUrl}/1`, {
+        method: 'PATCH',
+        body: JSON.stringify({ title: 'Updated by Rijoan Maruf' }),
+        headers: { 'Content-type': 'application/json' },
+    });
+    const data = await response.json();
+    console.log(data);
+}
+
+// DELETE
+async function deletePost() {
+    const response = await fetch(`${apiUrl}/1`, { method: 'DELETE' });
+    console.log('Post deleted');
+}
+```
+
+
+
+### **4. GET vs POST**
+- **GET**: Used to retrieve data (e.g., fetching user details).
+- **POST**: Used to send data (e.g., creating a new user).
+
+
+
+### **5. Status Codes**
+- **200**: OK (successful request).
+- **201**: Created (resource successfully created).
+- **400**: Bad Request (invalid input).
+- **404**: Not Found (resource not found).
+- **500**: Internal Server Error (server-side error).
+
+
+
+### **6. Async/Await and Try/Catch**
+- **`async/await`**: Simplifies asynchronous code.
+- **`try/catch`**: Handles errors gracefully.
+
+```javascript
+// Example: Fetch data with error handling
+async function fetchData() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+fetchData();
+```
+
+```javascript
+// Example: Create a post with Rijoan Maruf as the author
+async function createPost() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({ title: 'Post by Rijoan Maruf', body: 'This is a test post', userId: 1 }),
+            headers: { 'Content-type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to create post');
+        const data = await response.json();
+        console.log('Post created:', data);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+createPost();
 ```
